@@ -51,7 +51,7 @@ const Navbar = () => {
                     }`}
                     href={href}
                   >
-                    <span className="relative z-10 font-semibold ">{name}</span>
+                    <span className="relative z-10  ">{name}</span>
                   </Link>
                 </div>
               ))}
