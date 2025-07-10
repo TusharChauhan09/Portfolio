@@ -56,7 +56,7 @@ export function ThemeToggle() {
             transition={{ duration: 0.3 }}
             className="absolute"
           >
-            <Sun className="h-[1.2rem] w-[1.2rem] text-yellow-400" />
+            <Sun className="h-[1.2rem] w-[1.2rem] text-[#ff0000]" />
           </motion.span>
         ) : (
           <motion.span

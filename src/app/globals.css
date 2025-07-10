@@ -1,5 +1,19 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "SFCartoonistHandSCBold";
+  src: url("/fonts/sfcartoonisthandscbold.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Mallanna-Regular";
+  src: url("/fonts/Mallanna-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
 :root {
   --background: oklch(0.9956 0.0106 100.8162);
   --foreground: oklch(0.2997 0.0071 106.8176);
@@ -185,4 +199,41 @@ body {
 .dark .japanese-logo-glow:hover text {
   filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.4))
     drop-shadow(0 0 24px rgba(255, 255, 255, 0.2));
+}
+
+.jap {
+  font-family: var(--font-jap), sans-serif;
+}
+
+.demon-red {
+  color: #ff0000;
+}
+
+.smalll {
+  font-family: "SFCartoonistHandSCBold", sans-serif;
+}
+
+.small-text {
+  font-family: "Mallanna-Regular", sans-serif;
+}
+
+::selection {
+  background: transparent;
+  color: #ff0000;
+}
+
+@keyframes red-glow {
+  0% {
+    box-shadow: 0 0 0 0 #ff0000;
+    border-color: #ff0000;
+  }
+  25% {
+    box-shadow: 0 0 2px 2px #ff0000;
+    border-color: #ff0000;
+  }
+}
+
+.red-glow {
+  animation: red-glow 0.5s ease-in-out;
+  border-color: #ff0000 !important ;
 }

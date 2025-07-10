@@ -14,7 +14,7 @@ export default function Layout({ children }: ChildrenProps) {
       <div className="container mx-auto flex min-h-screen max-w-4xl flex-col px-4 py-5 md:px-16">
         {children}
       </div>
-      <Footer />
+        <Footer />
     </>
   )
 }

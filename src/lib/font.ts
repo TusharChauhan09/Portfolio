@@ -3,11 +3,11 @@ import localFont from "next/font/local";
 export const neu = localFont({
   src: [
     {
-      path: "../../public/fonts/NeueMachina-Light (1).otf",
+      path: "../../public/fonts/NeueMachina-Light.otf",
       weight: "200",
     },
     {
-      path: "../../public/fonts/NeueMachina-Regular (1).otf",
+      path: "../../public/fonts/NeueMachina-Regular.otf",
       weight: "400",
     },
     {
@@ -34,4 +34,13 @@ export const cath = localFont({
     },
   ],
   variable: "--font-cath",
+});
+export const jap = localFont({
+  src: [
+    {
+      path: "../../public/fonts/Geishta.otf",
+      weight: "400",
+    },
+  ],
+  variable: "--font-jap",
 });

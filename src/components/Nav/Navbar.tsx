@@ -19,7 +19,7 @@ const navItems = [
     href: "/blog",
   },
   {
-    name: "Playground",
+    name: "Arena",
     href: "/playground",
   },
 ];
@@ -33,7 +33,7 @@ const Navbar = () => {
       <div className="flex items-center hover:cursor-pointer  ">
         <JapaneseNameLogo
           size={90}
-          color={theme === "dark" ? "white" : "black"}
+          color={theme === "dark" ? "#ff0000" : "black"}
           glowOnHover
         />
       </div>
@@ -42,21 +42,33 @@ const Navbar = () => {
           <Hamburger isOpen={false} />
         ) : (
           <>
-            <nav className="hidden gap-1 px-1 py-5 md:flex">
+            <nav className="hidden gap-1 px-1 py-5 md:flex items-center">
               {navItems.map(({ name, href }) => (
-                <div key={name + href}>
+                <div key={name + href} className="flex items-center">
                   <Link
                     className={`relative w-fit overflow-hidden rounded-full px-3 py-2 opacity-50 transition-all ${
                       path === href ? "" : "hover:opacity-100"
                     }`}
                     href={href}
                   >
-                    <span className="relative z-10  ">{name}</span>
+                    <span
+                      className={`relative z-10 ${
+                        name === "Arena"
+                          ? `jap text-4xl ${
+                              theme === "dark" ? "demon-red" : ""
+                            }`
+                          : "small-text text-xl"
+                      }`}
+                    >
+                      {name}
+                    </span>
                   </Link>
                 </div>
               ))}
             </nav>
-            <ThemeToggle />
+            <div className="flex items-center">
+              <ThemeToggle />
+            </div>
           </>
         )}
       </div>
