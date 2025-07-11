@@ -1,19 +1,11 @@
-import GitHubHeatmap from "@/components/GitHub/GitHubHeatmap";
 import Introduction from "@/components/Home/Introduction";
-import LeetCodeCard from "@/components/Leetcode/LeetCodeCard";
-import BentoGrid from "@/components/Home/BentoGrid";
+import DevVsDsa from "@/components/Home/DevVsDsa";
 
 export default function Home() {
   return (
-    <>
+    <div className="flex flex-col items-center justify-center space-y-8">
       <Introduction name={"Enlight"} />
-      <br />
-      <br />
-      {/* Bento Grid */}
-      <BentoGrid />
-      <br />
-      <GitHubHeatmap username={"tusharchauhan09"} />
-      <LeetCodeCard />
-    </>
+      <DevVsDsa />
+    </div>
   );
 }

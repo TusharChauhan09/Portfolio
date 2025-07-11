@@ -17,12 +17,13 @@ export default function Introduction({ name }: { name: string }) {
     }
   }, [theme]);
   return (
-    <div className="w-full pr-10 flex flex-col space-y-10">
+    <div className="w-full px-10 flex flex-col space-y-10">
       {/* Introduction */}
-      <motion.div className="flex items-center justify-between pt-2">
-        <div>
-          <motion.h1 className="text-sm smalll">Hey It's me</motion.h1>
-          <div className="flex items-center gap-3">
+      <motion.div className="flex items-center justify-between pt-2 max-[425px]:flex-col max-[425px]:items-center max-[425px]:gap-4">
+        {/* Left: Heading and Name/Handle */}
+        <div className="flex flex-col gap-1 max-[425px]:order-2 w-full max-[425px]:items-center">
+          <motion.h1 className="text-sm smalll mb-1">Hey It's me</motion.h1>
+          <div className="flex items-center gap-3 max-[425px]:justify-center max-[425px]:w-full">
             <motion.h1
               className={`jap text-4xl ${theme === "dark" ? "demon-red" : ""}`}
             >
@@ -39,7 +40,8 @@ export default function Introduction({ name }: { name: string }) {
             </div>
           </div>
         </div>
-        <div className="flex items-center gap-3">
+        {/* Right: Image */}
+        <div className="flex items-center max-[425px]:order-1 max-[425px]:mb-2">
           <Image
             src={IntroductionImage}
             alt="Japanese Name Logo"
@@ -53,7 +55,7 @@ export default function Introduction({ name }: { name: string }) {
       </motion.div>
 
       {/* testimonial */}
-      <div className="flex flex-col text-md w-full break-words leading-loose space-y-3">
+      <div className="flex flex-col smalll text-md w-full break-words leading-loose space-y-3">
         <div>
           Hey! I’m a Full Stack Engineer who loves building things that don’t
           just work—but feel right.

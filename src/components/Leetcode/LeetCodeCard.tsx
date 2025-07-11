@@ -1,9 +1,5 @@
 const LeetCodeCard = () => {
-    return (
-      <>
-      </>
-    );
-  };
-  
-  export default LeetCodeCard;
-  
+  return <></>;
+};
+
+export default LeetCodeCard;
