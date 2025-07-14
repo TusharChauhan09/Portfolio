@@ -10,8 +10,8 @@ export default function Home() {
       <motion.div className={`flex flex-col items-center justify-center space-y-2`}>
       <GitHubHeatmap username={"tusharchauhan09"} />
       <Vs />
-      <GitHubHeatmap username={"tusharchauhan09"} />
-      {/* <LeetCodeCard /> */}
+      {/* <GitHubHeatmap username={"tusharchauhan09"} /> */}
+      <LeetCodeCard username={"tusharchauhan09"} />
       </motion.div>
   );
 }

@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { ThemeProvider } from "@/providers/ThemeProvider";
 import { neu, lombok, cath, jap } from "@/lib/font";
 
-import Navbar from "@/components/Nav/Navbar";
-import Footer from "@/components/Layout/Footer";
+import { ThemeProvider } from "@/providers/ThemeProvider";
+import ApolloClientProvider from "@/providers/ApolloClientProvider";
 
 export default function RootLayout({
   children,
@@ -22,7 +21,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <ApolloClientProvider>
+            {children}
+          </ApolloClientProvider>
         </ThemeProvider>
       </body>
     </html>
