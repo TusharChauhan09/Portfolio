@@ -75,7 +75,8 @@ function getColorIndex(count: number) {
   return 4;
 }
 
-const BLOCK_SIZE = 10;
+// Medium block size and margin for a slightly larger heatmap
+const BLOCK_SIZE = 9;
 const BLOCK_MARGIN = 3;
 const BLOCK_RADIUS = 3;
 const WEEKS_DESKTOP = 53;
@@ -162,38 +163,57 @@ const LeetCodeCard = ({ username }: { username: string }) => {
     dateToCount[date] = count;
   }
 
-  // Calculate grid range
-  const today = new Date();
-  const numWeeks = isMobile ? WEEKS_MOBILE : WEEKS_DESKTOP;
-  // End on the last full week (like GitHub)
-  const endDate = getStartOfWeek(today);
-  const startDate = new Date(endDate);
-  startDate.setDate(endDate.getDate() - (numWeeks * 7 - 1));
+  // Responsive block size and margin
+  const BLOCK_SIZE = isMobile ? 7 : 9;
+  const BLOCK_MARGIN = isMobile ? 2 : 3;
+  const BLOCK_RADIUS = 2;
 
-  // Build grid: columns = weeks, rows = days (Sunday to Saturday)
+  // Always end on today
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  // Number of weeks to show: 26 for mobile (6 months), 53 for desktop (12 months)
+  const numWeeks = isMobile ? 26 : 53;
+  const daysToShow = numWeeks * 7;
+  // Find the Sunday (start of week) that is (daysToShow - 1) days before today
+  const endDate = new Date(today);
+  const startDate = new Date(endDate);
+  startDate.setDate(endDate.getDate() - (daysToShow - 1));
+  startDate.setDate(startDate.getDate() - startDate.getDay());
+  // Build the array of dates from startDate to today (never after today)
+  const allDates: { date: string; count: number }[] = [];
+  let current = new Date(startDate);
+  while (current <= endDate) {
+    const dateStr = formatDate(current);
+    allDates.push({ date: dateStr, count: dateToCount[dateStr] || 0 });
+    current.setDate(current.getDate() + 1);
+  }
+  // If the last week is incomplete, pad with empty cells
+  const remainder = allDates.length % 7;
+  if (remainder !== 0) {
+    for (let i = remainder; i < 7; i++) {
+      allDates.push({ date: "", count: 0 });
+    }
+  }
+  // Chunk into weeks
   const grid: { date: string; count: number }[][] = [];
+  for (let i = 0; i < allDates.length; i += 7) {
+    grid.push(allDates.slice(i, i + 7));
+  }
+  // Month labels
   const monthLabels: { x: number; label: string }[] = [];
   let lastMonth = null;
-  for (let w = 0; w < numWeeks; w++) {
-    const week: { date: string; count: number }[] = [];
-    for (let d = 0; d < DAYS; d++) {
-      const date = new Date(startDate);
-      date.setDate(startDate.getDate() + w * 7 + d);
-      const dateStr = formatDate(date);
-      week.push({ date: dateStr, count: dateToCount[dateStr] || 0 });
+  for (let w = 0; w < grid.length; w++) {
+    const firstDay = grid[w][0];
+    if (firstDay && firstDay.date) {
+      const month = new Date(firstDay.date).getMonth();
+      if (month !== lastMonth) {
+        monthLabels.push({
+          x: w * (BLOCK_SIZE + BLOCK_MARGIN),
+          label: MONTH_LABELS[month],
+        });
+        lastMonth = month;
+      }
     }
-    // Add month label if the first day of the week is a new month
-    const firstDay = new Date(startDate);
-    firstDay.setDate(startDate.getDate() + w * 7);
-    const month = firstDay.getMonth();
-    if (month !== lastMonth) {
-      monthLabels.push({
-        x: w * (BLOCK_SIZE + BLOCK_MARGIN),
-        label: MONTH_LABELS[month],
-      });
-      lastMonth = month;
-    }
-    grid.push(week);
   }
 
   // Tooltip id
@@ -202,10 +222,14 @@ const LeetCodeCard = ({ username }: { username: string }) => {
     theme === "dark" ? HEATMAP_COLORS.dark : HEATMAP_COLORS.light;
 
   return (
-    <div className="w-full max-h-[150px] flex flex-col items-center">
+    <div
+      className={`w-full flex flex-col items-center  ${
+        isMobile ? "max-h-[110px]" : "max-h-[160px]"
+      }`}
+    >
       <svg
-        width={(BLOCK_SIZE + BLOCK_MARGIN) * numWeeks}
-        height={(BLOCK_SIZE + BLOCK_MARGIN) * DAYS + 16}
+        width={(BLOCK_SIZE + BLOCK_MARGIN) * grid.length}
+        height={(BLOCK_SIZE + BLOCK_MARGIN) * DAYS + (isMobile ? 20 : 30)}
         style={{ display: "block" }}
       >
         {/* Month labels */}
@@ -213,8 +237,8 @@ const LeetCodeCard = ({ username }: { username: string }) => {
           <text
             key={m.x}
             x={m.x + 2}
-            y={12}
-            fontSize={10}
+            y={isMobile ? 12 : 22}
+            fontSize={isMobile ? 8 : 10}
             fill={theme === "dark" ? "#fff" : "#222"}
             fontFamily="inherit"
           >
@@ -227,9 +251,9 @@ const LeetCodeCard = ({ username }: { username: string }) => {
             const colorIdx = getColorIndex(day.count);
             return (
               <rect
-                key={day.date}
+                key={day.date + x + y}
                 x={x * (BLOCK_SIZE + BLOCK_MARGIN)}
-                y={y * (BLOCK_SIZE + BLOCK_MARGIN) + 16}
+                y={y * (BLOCK_SIZE + BLOCK_MARGIN) + (isMobile ? 18 : 30)}
                 width={BLOCK_SIZE}
                 height={BLOCK_SIZE}
                 rx={BLOCK_RADIUS}
@@ -246,7 +270,7 @@ const LeetCodeCard = ({ username }: { username: string }) => {
       </svg>
       <Tooltip
         id={tooltipId}
-        style={{ fontSize: "11px", padding: "4px 8px" }}
+        style={{ fontSize: "10px", padding: "3px 8px" }}
       />
     </div>
   );

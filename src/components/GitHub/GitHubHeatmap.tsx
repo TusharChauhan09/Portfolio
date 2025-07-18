@@ -105,23 +105,41 @@ export default function GitHubHeatmap({ username }: { username: string }) {
       block
     );
 
+  // Responsive block size and margin
+  const blockSize = isMobile ? 7 : 9;
+  const blockMargin = isMobile ? 2 : 3;
+  const blockRadius = isMobile ? 2 : 3;
+  const fontSize = isMobile ? 8 : 10;
+
+  // Only show last 6 months on mobile
+  const transformData = isMobile
+    ? (contributions: Activity[]) => {
+        // Get the last 26 weeks (6 months)
+        const last26Weeks = contributions.slice(-26 * 7);
+        return last26Weeks;
+      }
+    : undefined;
+
   return (
     <>
       <GitHubCalendar
         username={username}
-        blockMargin={3}
-        blockRadius={3}
-        blockSize={10}
+        blockMargin={blockMargin}
+        blockRadius={blockRadius}
+        blockSize={blockSize}
         colorScheme={themeMode}
-        fontSize={10}
-        transformData={isMobile ? selectLastHalfYear : undefined}
+        fontSize={fontSize}
+        transformData={transformData}
         hideColorLegend={true}
         renderBlock={defaultRenderBlock}
         theme={customTheme}
       />
       <Tooltip
         id={tooltipId}
-        style={{ fontSize: "11px", padding: "4px 8px" }}
+        style={{
+          fontSize: fontSize,
+          padding: isMobile ? "2px 6px" : "3px 8px",
+        }}
       />
     </>
   );

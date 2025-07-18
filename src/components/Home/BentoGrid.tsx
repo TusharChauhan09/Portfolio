@@ -1,6 +1,9 @@
 "use client";
 import { useMobileView } from "@/hooks/useMobileView";
 import BentoCard from "./BentoCards/BentoCard";
+
+import DevVsDsa from "./BentoCards/DevVsDsa";
+import Socials from "./BentoCards/Socials";
 import Vibe from "./BentoCards/Vibe";
 
 const BentoGrid: React.FC = () => {
@@ -11,28 +14,25 @@ const BentoGrid: React.FC = () => {
       <div
         className={
           isMobile
-            ? "grid grid-cols-2 grid-rows-14 gap-4 auto-rows-[700px] auto-cols-[200px]"
-            : "grid grid-cols-4 grid-rows-8 gap-4 auto-rows-[1000px] md:auto-rows-[1300px]"
+            ? "grid grid-cols-2 grid-rows-14 gap-3 auto-rows-[700px] auto-cols-[200px]"
+            : "grid grid-cols-4 grid-rows-8 gap-3 auto-rows-[1000px] md:auto-rows-[1300px]"
         }
       >
-        <BentoCard
+        <DevVsDsa
           className={
             isMobile
-              ? " col-span-2 row-span-3 flex items-center justify-center"
-              : "col-span-4 row-span-3 flex items-center justify-center"
+              ? " col-span-2 row-span-3 "
+              : "col-span-4 row-span-3"
           }
-        >
-          dev
-        </BentoCard>
-        <BentoCard
+        />
+
+        <Socials
           className={
             isMobile
-              ? " col-span-1 row-span-3 flex items-center justify-center"
-              : "col-span-1 row-span-2 flex items-center justify-center"
+              ? " col-span-1 row-span-3"
+              : "col-span-1 row-span-2"
           }
-        >
-          socals
-        </BentoCard>
+        />
         <BentoCard
           className={
             isMobile

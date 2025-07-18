@@ -42,15 +42,15 @@ export default function Introduction({ name }: { name: string }) {
         </div>
         {/* Right: Image */}
         <div className="flex items-center max-[425px]:order-1 max-[425px]:mb-2">
-          <Image
-            src={IntroductionImage}
-            alt="Japanese Name Logo"
-            width={110}
-            height={110}
-            className={`rounded-2xl border-2 border-neutral-800 ${
-              showGlow ? "red-glow" : ""
-            }`}
-          />
+          <div className={`ProfileDoubleBorder${showGlow ? " red-glow" : ""}`}>
+            <Image
+              src={IntroductionImage}
+              alt="Japanese Name Logo"
+              width={110}
+              height={110}
+              className="rounded-2xl"
+            />
+          </div>
         </div>
       </motion.div>
 
