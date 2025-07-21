@@ -1,5 +1,5 @@
 import IconCard from "./IconCard";
-const DiscordIcon = ({ size = 64 }: { size?: number }) => {
+const DiscordIcon = ({ size = 64}: { size?: number }) => {
   return (
     <IconCard size={size}>
       <svg
