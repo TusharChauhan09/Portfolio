@@ -350,3 +350,38 @@ body {
   display: block;
   color: inherit;
 }
+
+/* Custom double border for skill tags */
+.skillsDoubleBorder {
+  position: relative;
+  display: inline-block;
+  border-radius: 0.75rem;
+  border: 1.5px solid #2226; /* Outer border, default for dark mode */
+  overflow: hidden;
+  background: #0a0a0a;
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.1),
+    0 0 0 1.5px rgba(255, 255, 255, 0.04);
+}
+:root .skillsDoubleBorder {
+  border-color: #f5f3e7;
+  background: #fffef6;
+}
+.dark .skillsDoubleBorder {
+  border-color: #2226;
+  background: #0a0a0a;
+}
+.skillsDoubleBorder::after {
+  content: "";
+  position: absolute;
+  inset: 1.5px;
+  border-radius: 0.65rem;
+  border: 1.5px solid rgba(40, 40, 40, 0.1); /* Subtle dark for light mode */
+  pointer-events: none;
+  z-index: 2;
+}
+:root .skillsDoubleBorder::after {
+  border-color: rgba(40, 40, 40, 0.1);
+}
+.dark .skillsDoubleBorder::after {
+  border-color: rgba(255, 255, 255, 0.08);
+}

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 import { Hamburger } from "../Icones/Hamburger";
 import JapaneseNameLogo from "../Logo/JapaneseNameLogo";
@@ -22,6 +23,10 @@ const navItems = [
     name: "Arena",
     href: "/playground",
   },
+  {
+    name: "Skills",
+    href: "/skills",
+  },
 ];
 
 const Navbar = () => {
@@ -31,11 +36,21 @@ const Navbar = () => {
   return (
     <nav className="flex justify-between items-center py-4 px-4 min-md:px-50 w-full transition-colors bg-background text-foreground">
       <div className="flex items-center hover:cursor-pointer  ">
-        <JapaneseNameLogo
-          size={90}
-          color={theme === "dark" ? "#ff0000" : "black"}
-          glowOnHover
-        />
+        {(() => {
+          const router = useRouter();
+          return (
+            <div
+              className="cursor-pointer select-none"
+              onClick={() => router.push("/")}
+            >
+              <JapaneseNameLogo
+                size={90}
+                color={theme === "dark" ? "#ff0000" : "black"}
+                glowOnHover
+              />
+            </div>
+          );
+        })()}
       </div>
       <div className=" flex items-center gap-4 justify-center">
         {isMobile ? (
