@@ -4,7 +4,7 @@ const SkillsContainer = ({
   icon,
   name,
 }: {
-  icon: React.ReactNode;
+  icon?: React.ReactNode;
   name: string;
 }) => {
   return (
