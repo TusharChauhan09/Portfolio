@@ -20,6 +20,10 @@ const navItems = [
     href: "/blog",
   },
   {
+    name: "Work",
+    href: "/work",
+  },
+  {
     name: "Arena",
     href: "/playground",
   },

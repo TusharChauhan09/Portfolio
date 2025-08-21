@@ -2,14 +2,12 @@
 import React from "react";
 
 const Footer = () => {
-  // Get current date in MM/DD/YY format
   const now = new Date();
   const month = now.getMonth() + 1;
   const day = now.getDate();
   const year = now.getFullYear().toString().slice(-2);
   const formattedDate = `${month}/${day}/${year}`;
 
-  // Set default static values
   const quote = "motivation";
   const author = "name";
 
