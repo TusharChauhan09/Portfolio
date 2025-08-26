@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import type { StaticImageData } from "next/image";
 import { IconBrandGithub, IconLink } from "@tabler/icons-react";
+import SkillsContainer from "../Skills/SkillsContainer";
 
 interface ProjectTemplateProps {
   title: string;
@@ -10,6 +11,7 @@ interface ProjectTemplateProps {
   image: string | StaticImageData;
   github: string;
   link?: string;
+  stack?: string[];
 }
 
 const ProjectTemplate: React.FC<ProjectTemplateProps> = ({
@@ -18,6 +20,7 @@ const ProjectTemplate: React.FC<ProjectTemplateProps> = ({
   image,
   github,
   link,
+  stack,
 }) => {
   return (
     <div className="skillsDoubleBorder w-full">
@@ -48,6 +51,11 @@ const ProjectTemplate: React.FC<ProjectTemplateProps> = ({
             </div>
           </div>
           <p className="text-gray-600 text-sm">{description}</p>
+        </div>
+        <div className="w-full flex flex-wrap">
+          {stack && stack.map((tech, index) => (
+            <SkillsContainer key={index} name={tech} />
+          ))}
         </div>
       </div>
     </div>

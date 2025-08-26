@@ -9,9 +9,9 @@ const SkillsContainer = ({
 }) => {
   return (
     <div className="skillsDoubleBorder">
-      <div className="inline-flex smalll items-center gap-2 rounded-md px-2 pb-0.25 pt-1.25 text-xs font-medium shadow-none">
+      <div className="flex justify-center smalll items-center gap-2 rounded-md px-2 text-sm py-1 shadow-none">
         <span className="flex items-center justify-center">{icon}</span>
-        <span>{name}</span>
+        <span className="flex items-center justify-center pr-0.5">{name}</span>
       </div>
     </div>
   );

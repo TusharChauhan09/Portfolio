@@ -25,7 +25,7 @@ const navItems = [
   },
   {
     name: "Arena",
-    href: "/playground",
+    href: "/arena",
   },
   {
     name: "Skills",
