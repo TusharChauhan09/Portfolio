@@ -17,4 +17,5 @@ const Vibe = ({ className }: { className: string }) => {
   );
 };
 
+
 export default Vibe;
