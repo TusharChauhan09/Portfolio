@@ -40,8 +40,8 @@ const Socials = ({ className }: { className: string }) => {
         style={
           isMobile
             ? {
-                height: "48px",
-                minHeight: "48px",
+                height: "78px",
+                minHeight: "78px",
                 width: "100%",
                 maxWidth: "140px",
               }

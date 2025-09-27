@@ -5,6 +5,7 @@ import BentoCard from "./BentoCards/BentoCard";
 import DevVsDsa from "./BentoCards/DevVsDsa";
 import Socials from "./BentoCards/Socials";
 import Vibe from "./BentoCards/Vibe";
+import Skills from "./BentoCards/Skills";
 
 const BentoGrid: React.FC = () => {
   const isMobile = useMobileView();
@@ -42,15 +43,12 @@ const BentoGrid: React.FC = () => {
         >
           Time line by loki
         </BentoCard>
-        <BentoCard
-          className={
-            isMobile
-              ? "col-span-2 row-span-2 flex items-center justify-center"
-              : "col-span-1 row-span-4 flex items-center justify-center"
-          }
-        >
-          posters
-        </BentoCard>
+          <Skills className={
+            isMobile?
+            "col-span-2 row-span-2"
+            :"col-span-1 row-span-4"
+
+          } />
         <Vibe
           className={
             isMobile

@@ -7,7 +7,7 @@ import BentoCard from "./BentoCard";
 export default function DevVsDsa({className}: {className: string}) {
     
   return (
-    <BentoCard className={className}>
+    <BentoCard className={`${className} max-h-[380px]`}>
       <motion.div className={`flex flex-col items-center justify-center space-y-2`}>
       <GitHubHeatmap username={"tusharchauhan09"} />
       <Vs />

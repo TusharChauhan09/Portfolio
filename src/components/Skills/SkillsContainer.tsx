@@ -5,7 +5,7 @@ const SkillsContainer = ({
   name,
 }: {
   icon?: React.ReactNode;
-  name: string;
+  name?: string;
 }) => {
   return (
     <div className="skillsDoubleBorder">
