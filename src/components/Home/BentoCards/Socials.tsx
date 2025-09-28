@@ -1,5 +1,5 @@
 "use client";
-import { motion } from "motion/react";
+import { motion, stagger, AnimatePresence } from "motion/react";
 import BentoCard from "./BentoCard";
 import XIcon from "./Icons/XIcon";
 import GithubIcon from "./Icons/GithubIcon";
@@ -28,54 +28,78 @@ const Socials = ({ className }: { className: string }) => {
       className={
         isMobile
           ? `${className} flex flex-col items-end`
-          : `${className} flex flex-row items-center justify-end gap-3`
+          : `${className} flex flex-row items-center justify-end w-full gap-3`
       }
     >
-      <div
+      <motion.div
         className={
           isMobile
-            ? "jap text-4xl mb-2 flex items-center justify-center w-full"
-            : "jap text-4xl flex rotate-270 origin-top items-center justify-center"
+            ? "jap text-4xl  mt-20 relative flex items-center justify-center w-full"
+            : "jap text-4xl flex rotate-270 relative origin-top items-center justify-center"
         }
-        style={
-          isMobile
-            ? {
-                height: "78px",
-                minHeight: "78px",
-                width: "100%",
-                maxWidth: "140px",
-              }
-            : {
-                width: "40px",
-                minWidth: "40px",
-                height: "48px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "end",
-                pointerEvents: "none",
-                marginRight: "10px",
-              }
-        }
+        initial={{
+          y: isMobile ? -10 : 0,
+        }}
       >
-        {hovered || "Social"}
-      </div>
-      <motion.div className="grid grid-cols-2 gap-2">
-        <div className="flex flex-col gap-1">
+        <AnimatePresence mode="wait">
+          <motion.span
+            key={hovered} 
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.3 }}
+            className={` absolute ${isMobile ? " right-8" : "-bottom-3"}`}
+          >
+            {hovered || "Social"}
+          </motion.span>
+        </AnimatePresence>
+      </motion.div>
+      <motion.div
+        className={`grid grid-cols-2 gap-2 ${isMobile ? "mt-1" : ""}`}
+      >
+        <motion.div
+         className="flex flex-col gap-1">
           {ICONS.slice(0, 3).map(({ label, Component }) => (
-            <div
+            <motion.div
+              initial={{
+                opacity: 0,
+                x: -15,
+              }}
+              animate={{
+                scale: hovered === label ? 1.1 : 1,
+              }}
+              whileInView={{
+                opacity: 1,
+                x: 0,
+                transition: { duration: 0.8, delay: 0.3 },
+              }}
               key={label}
+              className="cursor-pointer"
               onMouseEnter={() => setHovered(label)}
               onMouseLeave={() => setHovered(null)}
               onTouchStart={() => setHovered(label)}
               onTouchEnd={() => setHovered(null)}
             >
               <Component size={50} />
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
         <div className="flex flex-col gap-1">
           {ICONS.slice(3, 6).map(({ label, Component }) => (
-            <div
+            <motion.div
+              initial={{
+                opacity: 0,
+                x: 15,
+              }}
+              animate={{
+                scale: hovered === label ? 1.1 : 1,
+              }}
+              whileInView={{
+                opacity: 1,
+                x: 0,
+                transition: { duration: 0.8, delay: 0.3 },
+              }}
+              className="cursor-pointer"
               key={label}
               onMouseEnter={() => setHovered(label)}
               onMouseLeave={() => setHovered(null)}
@@ -83,7 +107,7 @@ const Socials = ({ className }: { className: string }) => {
               onTouchEnd={() => setHovered(null)}
             >
               <Component size={50} />
-            </div>
+            </motion.div>
           ))}
         </div>
       </motion.div>

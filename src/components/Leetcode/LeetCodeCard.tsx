@@ -174,7 +174,7 @@ const LeetCodeCard = ({ username }: { username: string }) => {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
   // Number of weeks to show: 26 for mobile (6 months), 53 for desktop (12 months)
-  const numWeeks = isMobile ? 26 : 53;
+  const numWeeks = isMobile ? 18 : 53;
   const daysToShow = numWeeks * 7;
   // Find the Sunday (start of week) that is (daysToShow - 1) days before today
   const endDate = new Date(today);

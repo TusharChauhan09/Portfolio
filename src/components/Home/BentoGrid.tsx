@@ -15,51 +15,46 @@ const BentoGrid: React.FC = () => {
       <div
         className={
           isMobile
-            ? "grid grid-cols-2 grid-rows-14 gap-3 auto-rows-[700px] auto-cols-[200px]"
-            : "grid grid-cols-4 grid-rows-8 gap-3 auto-rows-[1000px] md:auto-rows-[1300px]"
+            ? "grid grid-cols-[1.8fr_1fr] grid-flow-row-dense gap-3 auto-rows-[150px]"
+            : "grid grid-cols-4 grid-rows-8 grid-flow-row-dense gap-3 auto-rows-[1000px] md:auto-rows-[1300px]"
         }
       >
         <DevVsDsa
           className={
-            isMobile
-              ? " col-span-2 row-span-3 "
-              : "col-span-4 row-span-3"
+            isMobile ? " col-span-1 row-span-2" : "col-span-4 row-span-2"
           }
         />
 
         <Socials
           className={
-            isMobile
-              ? " col-span-1 row-span-3"
-              : "col-span-1 row-span-2"
+            isMobile ? " col-span-1 row-span-2 " : "col-span-1 row-span-2"
           }
         />
         <BentoCard
           className={
             isMobile
-              ? " col-span-1 row-span-3 flex items-center justify-center"
+              ? " col-span-2 row-span-2 flex items-center justify-center"
               : "col-span-2 row-span-2 flex items-center justify-center"
           }
         >
           Time line by loki
         </BentoCard>
-          <Skills className={
-            isMobile?
-            "col-span-2 row-span-2"
-            :"col-span-1 row-span-4"
-
-          } />
+        <Skills
+          className={
+            isMobile ? "col-span-2 row-span-1" : "col-span-1 row-span-3"
+          }
+        />
         <Vibe
           className={
             isMobile
-              ? "col-span-2 row-span-2 w-full h-[150px] "
-              : "col-span-2 row-span-2 w-full h-[200px] "
+              ? "col-span-2 row-span-2 w-full  "
+              : "col-span-2 row-span-2 w-full  "
           }
         />
         <BentoCard
           className={
             isMobile
-              ? "col-span-2 row-span-2 flex items-center justify-center"
+              ? "col-span-2 row-span-1 flex items-center justify-center"
               : "col-span-1 row-span-2 flex items-center justify-center"
           }
         >
@@ -69,7 +64,7 @@ const BentoGrid: React.FC = () => {
           className={
             isMobile
               ? "col-span-2 row-span-1 flex items-center justify-center"
-              : "col-span-3 row-span-1 flex items-center justify-center"
+              : "col-span-4 row-span-1 flex items-center justify-center"
           }
         >
           qutes

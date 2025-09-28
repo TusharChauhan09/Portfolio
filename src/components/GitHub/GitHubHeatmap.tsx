@@ -115,7 +115,7 @@ export default function GitHubHeatmap({ username }: { username: string }) {
   const transformData = isMobile
     ? (contributions: Activity[]) => {
         // Get the last 26 weeks (6 months)
-        const last26Weeks = contributions.slice(-26 * 7);
+        const last26Weeks = contributions.slice(-18 * 7);
         return last26Weeks;
       }
     : undefined;

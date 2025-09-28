@@ -118,7 +118,7 @@ export default function Skills({ className }: SkillsProps) {
       <div
         className={`w-full flex hover:cursor-pointer ${
           isMobile
-            ? " gap-3 flex-col [mask-image:linear-gradient(to_right,transparent,black_20%,black_80%,transparent)] [mask-repeat:no-repeat] [mask-size:100%_100%] [-webkit-mask-image:linear-gradient(to_right,transparent,black_20%,black_80%,transparent)] [-webkit-mask-repeat:no-repeat] [-webkit-mask-size:100%_100%]"
+            ? "pt-2 flex-col [mask-image:linear-gradient(to_right,transparent,black_20%,black_80%,transparent)] [mask-repeat:no-repeat] [mask-size:100%_100%] [-webkit-mask-image:linear-gradient(to_right,transparent,black_20%,black_80%,transparent)] [-webkit-mask-repeat:no-repeat] [-webkit-mask-size:100%_100%]"
             : "gap-2 px-3 flex-row max-h-[460px] [mask-image:linear-gradient(to_bottom,transparent,black_20%,black_80%,transparent)] [mask-repeat:no-repeat] [mask-size:100%_100%] [-webkit-mask-image:linear-gradient(to_bottom,transparent,black_20%,black_80%,transparent)] [-webkit-mask-repeat:no-repeat] [-webkit-mask-size:100%_100%]"
         } skills-container  `}
       >

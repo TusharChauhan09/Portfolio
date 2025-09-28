@@ -1,5 +1,5 @@
 "use client";
-import { motion } from "motion/react";
+import { motion, stagger, useAnimate } from "motion/react";
 import { useThemeMode } from "@/hooks/useThemeMode";
 import Image from "next/image";
 import IntroductionImage from "../../../public/images/IntroductionImage.png";
@@ -8,6 +8,23 @@ import { useEffect, useState } from "react";
 export default function Introduction({ name }: { name: string }) {
   const theme = useThemeMode();
   const [showGlow, setShowGlow] = useState(false);
+
+  const introduction = `Hey! I’m a Full Stack Engineer who loves building things that don’t just work—but feel right.\n
+  I don’t just build UIs—I build expressive, end-to-end experiences. From smooth interfaces to solid backends, I create thoughtful products with clean code and smart design.\n
+  Lately, I’ve been diving into DevOps and Web3, exploring how modern apps can be faster, smarter, and more secure.\n
+  When I’m not coding, I’m usually hacking on side projects or breaking things just to see how they tick.`;
+  const [scope, animate] = useAnimate();
+  function introAnimation() {
+    animate(
+      "span",
+      { opacity: 1, filter: "blur(0px)", y: 0 },
+      { duration: 0.3, ease: "easeInOut", delay: stagger(0.02) }
+    );
+  }
+
+  useEffect(() => {
+    introAnimation();
+  }, []);
 
   useEffect(() => {
     if (theme === "dark") {
@@ -55,24 +72,32 @@ export default function Introduction({ name }: { name: string }) {
       </motion.div>
 
       {/* testimonial */}
-      <div className="flex flex-col smalll text-md w-full break-words leading-loose space-y-3">
-        <div>
-          Hey! I’m a Full Stack Engineer who loves building things that don’t
-          just work—but feel right.
-        </div>
-        <div>
-          I don’t just build UIs—I build expressive, end-to-end experiences.
-          From smooth interfaces to solid backends, I create thoughtful products
-          with clean code and smart design.
-        </div>
-        <div>
-          Lately, I’ve been diving into DevOps and Web3, exploring how modern
-          apps can be faster, smarter, and more secure.
-        </div>
-        <div>
-          When I’m not coding, I’m usually hacking on side projects or breaking
-          things just to see how they tick.
-        </div>
+      <div
+        ref={scope}
+        className="flex flex-col gap-y-2 smalll text-md w-full max-w-full leading-loose"
+      >
+        {introduction
+          .split(/\r?\n/)
+          .map((line) => line.trim())
+          .filter((line) => line.length > 0)
+          .map((line, lineIdx) => (
+            <div
+              key={`line-${lineIdx}`}
+              className="flex flex-wrap gap-x-2 gap-y-1 w-full"
+            >
+              {line
+                .split(/\s+/)
+                .filter((w) => w.length > 0)
+                .map((word, wordIdx) => (
+                  <motion.span
+                    style={{ opacity: 0, filter: "blur(10px)", y: 10 }}
+                    key={`w-${lineIdx}-${wordIdx}`}
+                  >
+                    {word}
+                  </motion.span>
+                ))}
+            </div>
+          ))}
       </div>
     </div>
   );
