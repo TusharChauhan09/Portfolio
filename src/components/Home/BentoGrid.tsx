@@ -1,6 +1,7 @@
 "use client";
 import { useMobileView } from "@/hooks/useMobileView";
 import BentoCard from "./BentoCards/BentoCard";
+import { motion } from "motion/react";
 
 import DevVsDsa from "./BentoCards/DevVsDsa";
 import Socials from "./BentoCards/Socials";

@@ -27,7 +27,7 @@ const Socials = ({ className }: { className: string }) => {
     <div
       className={
         isMobile
-          ? `${className} flex flex-col items-end`
+          ? `${className} flex flex-col items-center `
           : `${className} flex flex-row items-center justify-end w-full gap-3`
       }
     >
@@ -48,9 +48,9 @@ const Socials = ({ className }: { className: string }) => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.3 }}
-            className={` absolute ${isMobile ? " right-8" : "-bottom-3"}`}
+            className={` absolute ${isMobile ? " right-[35%] -bottom-3" : "-bottom-3"}`}
           >
-            {hovered || "Social"}
+            {hovered || "Socials"}
           </motion.span>
         </AnimatePresence>
       </motion.div>
