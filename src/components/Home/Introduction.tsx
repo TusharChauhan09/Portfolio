@@ -1,18 +1,20 @@
 "use client";
+import React from "react";
 import { motion, stagger, useAnimate } from "motion/react";
 import { useThemeMode } from "@/hooks/useThemeMode";
 import Image from "next/image";
 import IntroductionImage from "../../../public/images/IntroductionImage.png";
 import { useEffect, useState } from "react";
+import { DrawCircleText } from "@/components/Miscellaneous/DrawCircleText";
 
 export default function Introduction({ name }: { name: string }) {
   const theme = useThemeMode();
   const [showGlow, setShowGlow] = useState(false);
 
-  const introduction = `Hey! I’m a Full Stack Engineer who loves building things that don’t just work—but feel right.\n
-  I don’t just build UIs—I build expressive, end-to-end experiences. From smooth interfaces to solid backends, I create thoughtful products with clean code and smart design.\n
-  Lately, I’ve been diving into DevOps and Web3, exploring how modern apps can be faster, smarter, and more secure.\n
-  When I’m not coding, I’m usually hacking on side projects or breaking things just to see how they tick.`;
+  const introduction = `Hey! I'm a who loves building things that don't just work—but feel right.\n
+  I don't just build UIs—I build expressive, end-to-end experiences. From smooth interfaces to solid backends, I create thoughtful products with clean code and smart design.\n
+  Lately, I've been diving into DevOps and Web3, exploring how modern apps can be faster, smarter, and more secure.\n
+  When I'm not coding, I'm usually hacking on side projects or breaking things just to see how they tick.`;
   const [scope, animate] = useAnimate();
   function introAnimation() {
     animate(
@@ -88,14 +90,34 @@ export default function Introduction({ name }: { name: string }) {
               {line
                 .split(/\s+/)
                 .filter((w) => w.length > 0)
-                .map((word, wordIdx) => (
-                  <motion.span
-                    style={{ opacity: 0, filter: "blur(10px)", y: 10 }}
-                    key={`w-${lineIdx}-${wordIdx}`}
-                  >
-                    {word}
-                  </motion.span>
-                ))}
+                .map((word, wordIdx) => {
+                  // Insert DrawCircleText after "a" in the first line
+                  if (lineIdx === 0 && word === "a") {
+                    return (
+                      <React.Fragment key={`w-${lineIdx}-${wordIdx}`}>
+                        <motion.span
+                          style={{ opacity: 0, filter: "blur(10px)", y: 10 }}
+                        >
+                          {word}
+                        </motion.span>
+                        <motion.span
+                        className="mr-[0.5]"
+                          style={{ opacity: 0, filter: "blur(10px)", y: 10 }}
+                        >
+                          <DrawCircleText text="Full Stack Developer" />
+                        </motion.span>
+                      </React.Fragment>
+                    );
+                  }
+                  return (
+                    <motion.span
+                      style={{ opacity: 0, filter: "blur(10px)", y: 10 }}
+                      key={`w-${lineIdx}-${wordIdx}`}
+                    >
+                      {word}
+                    </motion.span>
+                  );
+                })}
             </div>
           ))}
       </div>
