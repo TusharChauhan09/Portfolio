@@ -65,7 +65,7 @@ const Navbar = () => {
               {navItems.map(({ name, href }) => (
                 <div key={name + href} className="flex items-center">
                   <Link
-                    className={`relative w-fit overflow-hidden rounded-full px-3 py-2 opacity-50 transition-all ${
+                    className={`relative w-fit overflow-hidden rounded-full px-3 py-2 opacity-90 transition-all ${
                       path === href ? "" : "hover:opacity-100"
                     }`}
                     href={href}
@@ -74,7 +74,7 @@ const Navbar = () => {
                       className={`relative z-10 ${
                         name === "Arena"
                           ? `jap text-4xl ${
-                              theme === "dark" ? "demon-red" : ""
+                              theme === "dark" ? "demon-red" : "demon-red"
                             }`
                           : "smalll text-md"
                       }`}
