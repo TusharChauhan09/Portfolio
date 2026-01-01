@@ -1,4 +1,7 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
 
 @keyframes scrollHorizontal {
   0% {
@@ -434,4 +437,13 @@ body {
 .skills-container svg {
   width: 80% !important;
   height: 80% !important;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
 }

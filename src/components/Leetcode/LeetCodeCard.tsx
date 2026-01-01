@@ -6,7 +6,7 @@ import { useThemeMode } from "@/hooks/useThemeMode";
 import { useMobileView } from "@/hooks/useMobileView";
 import { Tooltip } from "react-tooltip";
 
-import LeetcodeLoader from "../Miscellaneous/LeetcodeLoader";
+import Loader from "../Miscellaneous/Loader";
 
 // Color scale constants for heatmap (same as GitHubHeatmap)
 const HEATMAP_COLORS = {
@@ -156,7 +156,7 @@ const LeetCodeCard = ({ username }: { username: string }) => {
       });
   }, [username]);
 
-  if (loading) return <LeetcodeLoader />;
+  if (loading) return <Loader size="md" />;
   if (error) return <div>Error :(</div>;
 
   // Build a map: date string -> count

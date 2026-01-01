@@ -1,19 +1,14 @@
 import axios from "axios";
 import { NextRequest, NextResponse } from "next/server";
 
+const LEETCODE_GRAPHQL_URL = "https://leetcode.com/graphql";
+
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
 
-    const graphqlUrl = process.env.LEETCODE_GRAPHQL_URL;
-    if (!graphqlUrl) {
-      throw new Error(
-        "LEETCODE_GRAPHQL_URL is not defined in environment variables"
-      );
-    }
-
     const response = await axios.post(
-      graphqlUrl,
+      LEETCODE_GRAPHQL_URL,
       body, // Graphql query
       {
         headers: {
