@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import BentoCard from "./BentoCard";
+import Loader from "@/components/Miscellaneous/Loader";
 
 interface APODData {
   title: string;
@@ -13,20 +14,6 @@ interface APODData {
   copyright?: string;
   thumbnail_url?: string;
 }
-
-// Pre-defined star positions to avoid hydration mismatch
-const STAR_POSITIONS = [
-  { w: 2, h: 2, l: 10, t: 15, delay: 0.1, duration: 1.5 },
-  { w: 1, h: 1, l: 25, t: 8, delay: 0.3, duration: 2.1 },
-  { w: 2, h: 2, l: 45, t: 22, delay: 0.7, duration: 1.8 },
-  { w: 1, h: 1, l: 60, t: 5, delay: 1.2, duration: 2.3 },
-  { w: 2, h: 2, l: 75, t: 18, delay: 0.5, duration: 1.6 },
-  { w: 1, h: 1, l: 85, t: 30, delay: 0.9, duration: 2.0 },
-  { w: 2, h: 2, l: 15, t: 45, delay: 1.5, duration: 1.7 },
-  { w: 1, h: 1, l: 35, t: 55, delay: 0.2, duration: 2.2 },
-  { w: 2, h: 2, l: 55, t: 40, delay: 0.8, duration: 1.9 },
-  { w: 1, h: 1, l: 70, t: 60, delay: 1.1, duration: 2.4 },
-];
 
 const Nasa = ({ className }: { className: string }) => {
   const [apodData, setApodData] = useState<APODData | null>(null);
@@ -68,32 +55,15 @@ const Nasa = ({ className }: { className: string }) => {
     fetchAPOD();
   }, []);
 
-  // Loading state with space-themed loader
+  // Loading state
   if (isLoading) {
     return (
-      <BentoCard className={`relative overflow-hidden ${className}`}>
-        <div className="absolute inset-0 bg-[#0a0a0a]">
-          {/* Stars background */}
-          <div className="absolute inset-0 overflow-hidden">
-            {STAR_POSITIONS.map((star, i) => (
-              <div
-                key={i}
-                className="absolute rounded-full bg-white animate-pulse"
-                style={{
-                  width: star.w + "px",
-                  height: star.h + "px",
-                  left: star.l + "%",
-                  top: star.t + "%",
-                  animationDelay: star.delay + "s",
-                  animationDuration: star.duration + "s",
-                }}
-              />
-            ))}
-          </div>
-          {/* Loader */}
-          <div className="absolute inset-0 flex flex-col items-center justify-center gap-2">
-            <div className="w-6 h-6 rounded-full border-2 border-purple-500/30 border-t-purple-400 animate-spin" />
-          </div>
+      <BentoCard
+        noBorder
+        className={`relative overflow-hidden rounded-xl ${className}`}
+      >
+        <div className="absolute inset-0 flex items-center justify-center">
+          <Loader size="md" />
         </div>
       </BentoCard>
     );
@@ -103,7 +73,7 @@ const Nasa = ({ className }: { className: string }) => {
   if (error || !apodData) {
     return (
       <BentoCard className={`relative overflow-hidden ${className}`}>
-        <div className="absolute inset-0 bg-[#0a0a0a] flex flex-col items-center justify-center gap-2 p-4">
+        <div className="absolute inset-0 bg-[#0a0a0a] flex flex-col items-center justify-center gap-2 p-1">
           <span className="text-xs text-white/50 text-center">
             Unable to load
           </span>
@@ -114,6 +84,12 @@ const Nasa = ({ className }: { className: string }) => {
 
   const isVideo = apodData.media_type === "video";
   const imageUrl = isVideo ? apodData.thumbnail_url : apodData.url;
+
+  // Parse date (format: YYYY-MM-DD) into day, month, year
+  const dateParts = apodData.date ? apodData.date.split("-") : [];
+  const year = dateParts[0] || "";
+  const month = dateParts[1] || "";
+  const day = dateParts[2] || "";
 
   return (
     <BentoCard
@@ -136,12 +112,15 @@ const Nasa = ({ className }: { className: string }) => {
       </div>
 
       {/* Bottom gradient for text readability */}
-      <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-black/70 to-transparent rounded-b-xl" />
+      <div className="absolute bottom-0 left-0 right-0 h-10 bg-gradient-to-t from-black/60 to-transparent rounded-b-xl" />
 
-      {/* Date label at bottom */}
+      {/* Date at bottom - DD-MM-YYYY format */}
       <div className="absolute bottom-2 left-0 right-0 flex justify-center">
-        <span className="text-white/90 text-xs tracking-wide font-mono">
-          from NASA: <span className="text-purple-400">{apodData.date}</span>
+        <span className="text-[10px] tracking-widest font-mono drop-shadow-lg">
+          <span className="text-[#ff0000]">
+            {day}-{month}
+          </span>
+          <span className="text-white/80">-{year}</span>
         </span>
       </div>
     </BentoCard>

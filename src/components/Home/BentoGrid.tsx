@@ -18,7 +18,7 @@ const BentoGrid: React.FC = () => {
         className={
           isMobile
             ? "grid grid-cols-[1.8fr_1fr] grid-flow-row-dense gap-3 auto-rows-[150px]"
-            : "grid grid-cols-4 grid-rows-8 grid-flow-row-dense gap-3 auto-rows-[1000px] md:auto-rows-[1300px]"
+            : "grid grid-cols-4 grid-flow-row-dense gap-3 auto-rows-[100px] md:auto-rows-[130px]"
         }
       >
         <DevVsDsa
@@ -62,20 +62,20 @@ const BentoGrid: React.FC = () => {
         >
           hills
         </BentoCard>
+        <Nasa
+          className={
+            isMobile ? "col-span-2 row-span-2" : "col-span-1 row-span-1"
+          }
+        />
         <BentoCard
           className={
             isMobile
               ? "col-span-2 row-span-1 flex items-center justify-center"
-              : "col-span-4 row-span-1 flex items-center justify-center"
+              : "col-span-3 row-span-1 flex items-center justify-center"
           }
         >
           qutes
         </BentoCard>
-        <Nasa
-          className={
-            isMobile ? "col-span-2 row-span-1" : "col-span-1 row-span-1"
-          }
-        />
       </div>
     </div>
   );
