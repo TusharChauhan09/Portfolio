@@ -77,7 +77,7 @@ const BentoGrid: React.FC = () => {
               : "col-span-1 row-span-1 flex items-center justify-center"
           }
         >
-          currently learning
+         Nasa
         </BentoCard>
       </div>
     </div>
