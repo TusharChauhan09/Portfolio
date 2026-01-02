@@ -7,6 +7,7 @@ import DevVsDsa from "./BentoCards/DevVsDsa";
 import Socials from "./BentoCards/Socials";
 import Vibe from "./BentoCards/Vibe";
 import Skills from "./BentoCards/Skills";
+import Nasa from "./BentoCards/Nasa";
 
 const BentoGrid: React.FC = () => {
   const isMobile = useMobileView();
@@ -70,15 +71,11 @@ const BentoGrid: React.FC = () => {
         >
           qutes
         </BentoCard>
-        <BentoCard
+        <Nasa
           className={
-            isMobile
-              ? "col-span-2 row-span-1 flex items-center justify-center"
-              : "col-span-1 row-span-1 flex items-center justify-center"
+            isMobile ? "col-span-2 row-span-1" : "col-span-1 row-span-1"
           }
-        >
-         Nasa
-        </BentoCard>
+        />
       </div>
     </div>
   );
