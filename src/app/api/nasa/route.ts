@@ -36,8 +36,8 @@ export async function GET(req: NextRequest) {
       headers: {
         "Content-Type": "application/json",
       },
-      // Cache for 1 minute
-      next: { revalidate: 60 },
+      // Cache for 1 hour
+      next: { revalidate: 3600 },
     });
 
     if (!response.ok) {
@@ -54,8 +54,8 @@ export async function GET(req: NextRequest) {
     return NextResponse.json(data, {
       status: 200,
       headers: {
-        // Cache the response for 1 minute on the client side
-        "Cache-Control": "public, s-maxage=60, stale-while-revalidate=300",
+        // Cache the response for 1 hour on the client side
+        "Cache-Control": "public, s-maxage=3600, stale-while-revalidate=7200",
       },
     });
   } catch (error: any) {

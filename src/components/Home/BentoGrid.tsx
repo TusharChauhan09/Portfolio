@@ -64,7 +64,7 @@ const BentoGrid: React.FC = () => {
         </BentoCard>
         <Nasa
           className={
-            isMobile ? "col-span-2 row-span-2" : "col-span-1 row-span-1"
+            isMobile ? "col-span-2 row-span-2" : "col-span-1 row-span-2"
           }
         />
         <BentoCard

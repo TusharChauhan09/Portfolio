@@ -94,10 +94,10 @@ const Nasa = ({ className }: { className: string }) => {
   return (
     <BentoCard
       noBorder
-      className={`relative overflow-hidden rounded-xl ${className}`}
+      className={`relative overflow-hidden rounded-xl flex flex-col ${className}`}
     >
-      {/* Image fills entire card */}
-      <div className="absolute inset-0">
+      {/* Image container - full width, takes available space */}
+      <div className="relative flex-1 min-h-0 w-full">
         {imageUrl && !imageError ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img
@@ -111,16 +111,13 @@ const Nasa = ({ className }: { className: string }) => {
         )}
       </div>
 
-      {/* Bottom gradient for text readability */}
-      <div className="absolute bottom-0 left-0 right-0 h-10 bg-gradient-to-t from-black/60 to-transparent rounded-b-xl" />
-
-      {/* Date at bottom - DD-MM-YYYY format */}
-      <div className="absolute bottom-2 left-0 right-0 flex justify-center">
-        <span className="text-[10px] tracking-widest font-mono drop-shadow-lg">
+      {/* Date section - outside the image, below it */}
+      <div className="flex justify-center py-1">
+        <span className="relative md:-right-9 jap font-bold text-xl md:text-xl -right-48 tracking-widest">
           <span className="text-[#ff0000]">
             {day}-{month}
           </span>
-          <span className="text-white/80">-{year}</span>
+          <span className="text-black/70 dark:text-white/80">-{year}</span>
         </span>
       </div>
     </BentoCard>
