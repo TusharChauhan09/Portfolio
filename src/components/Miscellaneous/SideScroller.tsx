@@ -48,7 +48,7 @@ export default function SideScroller() {
       <div className="relative w-full h-full rounded-full border border-black/20 dark:border-white/30 bg-transparent overflow-hidden">
         {/* Thumb - black fill that grows based on scroll */}
         <motion.div
-          className="absolute top-0 left-0 right-0 bg-red-700 rounded-full origin-top"
+          className="absolute top-0 left-0 right-0 bg-[#0a0a0a] dark:bg-red-700 rounded-full origin-top"
           style={{
             scaleY: smoothProgress,
             height: "100%",
