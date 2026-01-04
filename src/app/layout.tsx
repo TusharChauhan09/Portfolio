@@ -4,6 +4,7 @@ import { neu, lombok, cath, jap } from "@/lib/font";
 
 import { ThemeProvider } from "@/providers/ThemeProvider";
 import ApolloClientProvider from "@/providers/ApolloClientProvider";
+import SideScroller from "@/components/Miscellaneous/SideScroller";
 
 export default function RootLayout({
   children,
@@ -22,6 +23,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <ApolloClientProvider>
+            <SideScroller />
             {children}
           </ApolloClientProvider>
         </ThemeProvider>
