@@ -1,6 +1,7 @@
 "use client";
 import SkillsContainer from "@/components/Skills/SkillsContainer";
 import { useThemeMode } from "@/hooks/useThemeMode";
+import Cd from "@/components/Miscellaneous/Cd";
 import {
   C,
   Cpp,
@@ -193,12 +194,12 @@ const Technologies = [
 
 const API = [
   {
-    name: "REST"
-  }
-  ,{
+    name: "REST",
+  },
+  {
     icon: <GraphQl />,
     name: "GraphQL",
-  }
+  },
 ];
 
 const Tech = ({ name }: { name: string }) => {
@@ -212,8 +213,7 @@ const Tech = ({ name }: { name: string }) => {
 export default function SkillsPage() {
   const theme = useThemeMode();
   return (
-    <div className=" flex flex-col gap-5">
-
+    <div className=" flex flex-col gap-5 min-h-[70vh]">
       <div>
         <h1 className={`jap text-4xl ${theme === "dark" ? "demon-red" : ""}`}>
           Skills
@@ -292,6 +292,7 @@ export default function SkillsPage() {
         </div>
       </div>
 
+      <Cd />
     </div>
   );
 }
