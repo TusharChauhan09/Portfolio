@@ -1,6 +1,7 @@
 import ProjectTemplate from "@/components/Work/ProjectTemplate";
 import WorkInProgress from "@/components/Miscellaneous/WorkInProgress";
 import Cd from "@/components/Miscellaneous/Cd";
+import { SKILLS } from "@/components/Work/skills";
 
 const Projects = [
   {
@@ -9,7 +10,12 @@ const Projects = [
     image: "/images/download.jpeg",
     github: "https://github.com/yourusername/interprep",
     link: "https://interprep.com",
-    stack: ["Next.js", "TypeScript", "Tailwind CSS", "Node.js"],
+    stack: [
+      SKILLS.NextJS,
+      SKILLS.TypeScript,
+      SKILLS.TailwindCSS,
+      SKILLS.NodeJS,
+    ],
   },
 ];
 

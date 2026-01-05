@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import type { StaticImageData } from "next/image";
 import { IconBrandGithub, IconLink } from "@tabler/icons-react";
-import SkillsContainer from "../Skills/SkillsContainer";
+import TechStackOverlap from "./TechStackOverlap";
 import { motion } from "motion/react";
 
 interface ProjectTemplateProps {
@@ -62,12 +62,12 @@ const ProjectTemplate: React.FC<ProjectTemplateProps> = ({
           <p className="text-gray-600 text-xs">{description}</p>
         </div>
 
-        <div className="w-full flex flex-wrap gap-0.5">
-          {stack &&
-            stack.map((tech, index) => (
-              <SkillsContainer key={index} name={tech} />
-            ))}
-        </div>
+        {/* Overlapping Tech Stack */}
+        {stack && stack.length > 0 && (
+          <div className="w-full">
+            <TechStackOverlap stack={stack} maxVisible={5} size={28} />
+          </div>
+        )}
       </div>
     </motion.div>
   );
