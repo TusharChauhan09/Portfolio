@@ -43,7 +43,7 @@ export default function SideScroller() {
   if (!isVisible) return null;
 
   return (
-    <div className="fixed right-4 top-1/2 -translate-y-1/2 z-50 h-48 w-2">
+    <div className="fixed right-1 top-1/2 -translate-y-1/2 z-50 h-48 w-2">
       {/* Track - container with white outline */}
       <div className="relative w-full h-full rounded-full border border-black/20 dark:border-white/30 bg-transparent overflow-hidden">
         {/* Thumb - black fill that grows based on scroll */}

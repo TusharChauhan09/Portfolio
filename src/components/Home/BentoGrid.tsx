@@ -8,6 +8,7 @@ import Socials from "./BentoCards/Socials";
 import Vibe from "./BentoCards/Vibe";
 import Skills from "./BentoCards/Skills";
 import Nasa from "./BentoCards/Nasa";
+import Spotify from "./BentoCards/Spotify";
 
 const BentoGrid: React.FC = () => {
   const isMobile = useMobileView();
@@ -53,15 +54,11 @@ const BentoGrid: React.FC = () => {
               : "col-span-2 row-span-2 w-full  "
           }
         />
-        <BentoCard
+        <Spotify
           className={
-            isMobile
-              ? "col-span-2 row-span-1 flex items-center justify-center"
-              : "col-span-1 row-span-2 flex items-center justify-center"
+            isMobile ? "col-span-2 row-span-1" : "col-span-1 row-span-2"
           }
-        >
-          hills
-        </BentoCard>
+        />
         <Nasa
           className={
             isMobile ? "col-span-2 row-span-2" : "col-span-1 row-span-2"
