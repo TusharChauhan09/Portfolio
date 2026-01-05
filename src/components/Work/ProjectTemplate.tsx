@@ -24,14 +24,7 @@ const ProjectTemplate: React.FC<ProjectTemplateProps> = ({
   stack,
 }) => {
   return (
-    <motion.div
-      className="relative w-full rounded-xl overflow-hidden skillsDoubleBorder hover:cursor-pointer"
-      initial={{ boxShadow: "0 0 0px rgba(255,255,255,0)" }}
-      whileHover={{
-        boxShadow: "0 0 20px rgba(255,255,255,0.4)",
-      }}
-      transition={{ duration: 0.3, ease: "easeInOut" }}
-    >
+    <motion.div className="relative w-full rounded-xl overflow-hidden skillsDoubleBorder hover:cursor-pointer">
       {/* Shiny border line */}
       <motion.div
         className="absolute inset-0 rounded-xl pointer-events-none border-2 border-transparent bg-gradient-to-r from-transparent via-white/40 to-transparent opacity-0"
@@ -40,9 +33,9 @@ const ProjectTemplate: React.FC<ProjectTemplateProps> = ({
         transition={{ duration: 1, ease: "linear", repeat: Infinity }}
       />
 
-      {/* Inner content remains exactly the same */}
-      <div className="flex flex-col w-full h-full items-center gap-3 rounded-md p-3 text-sm font-medium">
-        <div className="w-full aspect-video border rounded-2xl relative overflow-hidden">
+      {/* Inner content */}
+      <div className="flex flex-col w-full items-center gap-1.5 rounded-md p-2 text-sm font-medium">
+        <div className="w-full aspect-video border rounded-lg relative overflow-hidden">
           <Image
             src={image}
             alt={title + " project preview"}
@@ -52,24 +45,24 @@ const ProjectTemplate: React.FC<ProjectTemplateProps> = ({
           />
         </div>
 
-        <div className="w-full flex flex-col gap-1 items-start justify-center smalll">
+        <div className="w-full flex flex-col items-start justify-center smalll">
           <div className="flex w-full justify-between items-center">
-            <h2 className="text-lg font-semibold">{title}</h2>
-            <div className="flex space-x-2">
+            <h2 className="text-base font-semibold">{title}</h2>
+            <div className="flex space-x-1.5">
               {link && (
                 <Link href={link} target="_blank" rel="noopener noreferrer">
-                  <IconLink stroke={1.5} />
+                  <IconLink size={18} stroke={1.5} />
                 </Link>
               )}
               <Link href={github} target="_blank" rel="noopener noreferrer">
-                <IconBrandGithub stroke={1.5} />
+                <IconBrandGithub size={18} stroke={1.5} />
               </Link>
             </div>
           </div>
-          <p className="text-gray-600 text-sm">{description}</p>
+          <p className="text-gray-600 text-xs">{description}</p>
         </div>
 
-        <div className="w-full flex flex-wrap">
+        <div className="w-full flex flex-wrap gap-0.5">
           {stack &&
             stack.map((tech, index) => (
               <SkillsContainer key={index} name={tech} />
