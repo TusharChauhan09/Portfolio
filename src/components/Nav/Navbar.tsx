@@ -48,7 +48,7 @@ const Navbar = () => {
               onClick={() => router.push("/")}
             >
               <JapaneseNameLogo
-                size={90}
+                size={120}
                 color={theme === "dark" ? "#ff0000" : "black"}
                 glowOnHover
               />

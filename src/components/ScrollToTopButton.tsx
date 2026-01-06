@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { useMobileView } from "@/hooks/useMobileView";
+import ArrowNarrowUpIcon from "@/components/ui/arrow-narrow-up-icon";
 
 const ScrollToTopButton = () => {
   const isMobile = useMobileView();
@@ -23,23 +24,12 @@ const ScrollToTopButton = () => {
   return (
     <button
       onClick={scrollToTop}
-      className={`fixed bottom-8 right-8 z-50 size-12 transition-opacity duration-300 flex justify-center items-center ${
-        visible
-          ? "opacity-100  size-12 rounded-full "
-          : "opacity-0 "
+      className={`fixed bottom-8 right-8 z-50 size-14 transition-opacity duration-300 flex justify-center items-center ${
+        visible ? "opacity-100 rounded-full " : "opacity-0 "
       }`}
       aria-label="Scroll to top"
     >
-      <svg
-        data-name="1-Arrow Up"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 32 32"
-        width="24"
-        height="24"
-        fill="currentColor"
-      >
-        <path d="m26.71 10.29-10-10a1 1 0 0 0-1.41 0l-10 10 1.41 1.41L15 3.41V32h2V3.41l8.29 8.29z" />
-      </svg>
+      <ArrowNarrowUpIcon size={28} strokeWidth={2} />
     </button>
   );
 };

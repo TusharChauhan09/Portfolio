@@ -6,15 +6,16 @@ interface JapaneseNameLogoProps {
 }
 
 const JapaneseNameLogo: React.FC<JapaneseNameLogoProps> = ({
-  size = 100,
+  size = 150,
   className = "",
   color = "white",
-  glowOnHover = false, // NEW
+  glowOnHover = false,
 }) => {
+  const height = typeof size === "number" ? size / 3 : size;
   return (
     <svg
       width={size}
-      height={size}
+      height={height}
       viewBox="0 0 300 100"
       xmlns="http://www.w3.org/2000/svg"
       className={`${className}${glowOnHover ? " japanese-logo-glow" : ""}`}

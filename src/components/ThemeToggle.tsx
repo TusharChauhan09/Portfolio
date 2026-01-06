@@ -1,8 +1,9 @@
 "use client";
 
 import * as React from "react";
-import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
+import BrightnessDownIcon from "@/components/ui/brightness-down-icon";
+import MoonIcon from "@/components/ui/moon-icon";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import Image from "next/image";
@@ -33,8 +34,8 @@ export function ThemeToggle() {
         setTimeout(() => {
           setShowWhiteCharizard(false);
           setAnimating(false);
-        }, 300); 
-      }, 400); 
+        }, 300);
+      }, 400);
     }
   };
 
@@ -43,7 +44,7 @@ export function ThemeToggle() {
       <button
         type="button"
         onClick={handleToggle}
-        className="relative flex items-center justify-center w-10 h-10 hover:cursor-pointer "
+        className="relative flex items-center justify-center w-14 h-14 hover:cursor-pointer "
         aria-label="Toggle theme"
         disabled={animating}
       >
@@ -56,7 +57,7 @@ export function ThemeToggle() {
             transition={{ duration: 0.3 }}
             className="absolute"
           >
-            <Sun className="h-[1.2rem] w-[1.2rem] text-[#ff0000]" />
+            <BrightnessDownIcon size={28} className="text-[#ff0000]" />
           </motion.span>
         ) : (
           <motion.span
@@ -67,7 +68,7 @@ export function ThemeToggle() {
             transition={{ duration: 0.3 }}
             className="absolute"
           >
-            <Moon className="h-[1.2rem] w-[1.2rem]" />
+            <MoonIcon size={24} />
           </motion.span>
         )}
         <span className="sr-only">Toggle theme</span>
