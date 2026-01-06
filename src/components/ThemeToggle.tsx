@@ -44,7 +44,9 @@ export function ThemeToggle() {
       <button
         type="button"
         onClick={handleToggle}
-        className="relative flex items-center justify-center w-14 h-14 hover:cursor-pointer "
+        className={`relative flex items-center justify-center w-14 h-14 hover:cursor-pointer ${
+          isDark ? "mt-[5px]" : ""
+        } `}
         aria-label="Toggle theme"
         disabled={animating}
       >
@@ -68,7 +70,7 @@ export function ThemeToggle() {
             transition={{ duration: 0.3 }}
             className="absolute"
           >
-            <MoonIcon size={24} />
+            <MoonIcon size={20} />
           </motion.span>
         )}
         <span className="sr-only">Toggle theme</span>

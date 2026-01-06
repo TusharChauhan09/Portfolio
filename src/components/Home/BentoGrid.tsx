@@ -18,8 +18,8 @@ const BentoGrid: React.FC = () => {
       <div
         className={
           isMobile
-            ? "grid grid-cols-[1.8fr_1fr] grid-flow-row-dense gap-3 auto-rows-[150px]"
-            : "grid grid-cols-4 grid-flow-row-dense gap-3 auto-rows-[100px] md:auto-rows-[130px]"
+            ? "grid grid-cols-[1.8fr_1fr] grid-flow-row-dense gap-1.5 auto-rows-[150px]"
+            : "grid grid-cols-4 grid-flow-row-dense gap-1.5 auto-rows-[100px] md:auto-rows-[130px]"
         }
       >
         <DevVsDsa
