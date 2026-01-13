@@ -22,7 +22,7 @@ const Spotify: React.FC<SpotifyProps> = ({ className }) => {
       >
         <iframe
           className={` ${
-            !isMobile ? "w-[352px] h-[360px]" : "w-full h-full min-h-[162px]"
+            !isMobile ? "w-[352px] h-[360px]" : "w-full h-full min-h-[172px]"
           }`}
           style={{
             border: "none",

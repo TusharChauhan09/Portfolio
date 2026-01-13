@@ -40,7 +40,9 @@ const WorkBento = ({ className }: { className: string }) => {
   }, [isHovered]);
 
   return (
-    <BentoCard className={`relative overflow-hidden group !p-0 ${className}`}>
+    <BentoCard
+      className={`relative overflow-hidden group cursor-pointer !p-0 ${className}`}
+    >
       <div
         className="absolute inset-0 m-[3px] rounded-[0.6rem] overflow-hidden z-10"
         onMouseEnter={() => setIsHovered(true)}
@@ -56,17 +58,23 @@ const WorkBento = ({ className }: { className: string }) => {
             transition={{ duration: 0.5 }}
             className="absolute inset-0"
           >
-            <Image
-              src={currentProject.image}
-              alt={currentProject.title}
-              fill
-              className="object-cover"
-              priority
-            />
+            <motion.div
+              className="relative w-full h-full"
+              animate={{ filter: isHovered ? "blur(0px)" : "blur(3px)" }}
+              transition={{ duration: 0.5 }}
+            >
+              <Image
+                src={currentProject.image}
+                alt={currentProject.title}
+                fill
+                className="object-cover scale-105" // Slight scale to preventing white edges during blur
+                priority
+              />
+            </motion.div>
             {/* Gradient Overlay - Intensifies on hover */}
             <motion.div
-              className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"
-              initial={{ opacity: 0.6 }}
+              className="absolute inset-0 bg-gradient-to-t from-white/95 via-white/50 to-transparent"
+              initial={{ opacity: 0 }}
               whileHover={{ opacity: 1 }}
               transition={{ duration: 0.3 }}
             />

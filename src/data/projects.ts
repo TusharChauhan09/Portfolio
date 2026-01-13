@@ -13,7 +13,8 @@ export const Projects: Project[] = [
   {
     title: "Interprep",
     description: "A platform for language learning and practice.",
-    image: "/images/download.jpeg",
+    image:
+      "https://drive.google.com/uc?export=view&id=1mMjGpYTzGd-OUIonsgeQCc2vmvmfaiJW",
     github: "https://github.com/yourusername/interprep",
     link: "https://interprep.com",
     stack: [
