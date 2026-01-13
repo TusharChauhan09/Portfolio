@@ -101,7 +101,7 @@ export default function Introduction({ name }: { name: string }) {
                           {word}
                         </motion.span>
                         <motion.span
-                        className="mr-[0.5]"
+                          className="mr-[0.5]"
                           style={{ opacity: 0, filter: "blur(10px)", y: 10 }}
                         >
                           <DrawCircleText text="Full Stack Developer" />
