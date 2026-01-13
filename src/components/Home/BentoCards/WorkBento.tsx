@@ -67,7 +67,7 @@ const WorkBento = ({ className }: { className: string }) => {
                 src={currentProject.image}
                 alt={currentProject.title}
                 fill
-                className="object-cover scale-105" // Slight scale to preventing white edges during blur
+                className="object-cover scale-105"
                 priority
               />
             </motion.div>

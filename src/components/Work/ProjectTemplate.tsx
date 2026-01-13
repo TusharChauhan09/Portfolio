@@ -34,15 +34,28 @@ const ProjectTemplate: React.FC<ProjectTemplateProps> = ({
       />
 
       {/* Inner content */}
-      <div className="flex flex-col w-full items-center gap-1.5 rounded-md p-2 text-sm font-medium">
-        <div className="w-full aspect-video border rounded-lg relative overflow-hidden">
-          <Image
-            src={image}
-            alt={title + " project preview"}
-            fill
-            priority
-            className="object-cover"
-          />
+      <div className="flex flex-col w-full items-center gap-1.5 rounded-md p-2 text-sm font-medium group">
+        <div
+          className="w-full aspect-video border rounded-lg relative overflow-hidden"
+          style={{ perspective: "1000px" }}
+        >
+          <motion.div
+            className="relative w-full h-full rounded-lg overflow-hidden"
+            whileHover={{
+              z: -50,
+              scale: 0.92,
+            }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+            style={{ transformStyle: "preserve-3d" }}
+          >
+            <Image
+              src={image}
+              alt={title + " project preview"}
+              fill
+              priority
+              className="object-cover"
+            />
+          </motion.div>
         </div>
 
         <div className="w-full flex flex-col items-start justify-center smalll">
