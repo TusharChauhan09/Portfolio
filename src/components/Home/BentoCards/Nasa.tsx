@@ -112,8 +112,8 @@ const Nasa = ({ className }: { className: string }) => {
       </div>
 
       {/* Date section - outside the image, below it */}
-      <div className="flex justify-center py-1">
-        <span className="relative md:-right-9 jap font-bold text-xl md:text-xl -right-48 tracking-widest">
+      <div className="flex justify-end w-full px-4 py-2">
+        <span className="jap font-bold text-xl tracking-widest">
           <span className="text-[#ff0000]">
             {day}-{month}
           </span>

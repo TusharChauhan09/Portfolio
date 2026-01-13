@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { neu, lombok, cath, jap } from "@/lib/font";
+import { neu, lombok, cath, jap, playfair } from "@/lib/font";
 
 import { ThemeProvider } from "@/providers/ThemeProvider";
 import ApolloClientProvider from "@/providers/ApolloClientProvider";
@@ -14,7 +14,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${neu.variable} ${lombok.variable} ${cath.variable} ${jap.variable} antialiased bg-background text-foreground`}
+        className={`${neu.variable} ${lombok.variable} ${cath.variable} ${jap.variable} ${playfair.variable} antialiased bg-background text-foreground`}
       >
         <ThemeProvider
           attribute="class"

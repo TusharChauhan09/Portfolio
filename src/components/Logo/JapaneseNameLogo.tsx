@@ -25,7 +25,7 @@ const JapaneseNameLogo: React.FC<JapaneseNameLogoProps> = ({
         y="75"
         fontFamily="Arial, sans-serif"
         fontWeight="bold"
-        fontSize="70"
+        fontSize="50"
         fill={color}
         letterSpacing="-5"
       >

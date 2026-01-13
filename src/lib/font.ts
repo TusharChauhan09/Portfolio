@@ -1,4 +1,5 @@
 import localFont from "next/font/local";
+import { Playfair_Display } from "next/font/google";
 
 export const neu = localFont({
   src: [
@@ -43,4 +44,12 @@ export const jap = localFont({
     },
   ],
   variable: "--font-jap",
+});
+
+// Elegant serif font for quotes
+export const playfair = Playfair_Display({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  style: ["normal", "italic"],
+  variable: "--font-playfair",
 });
