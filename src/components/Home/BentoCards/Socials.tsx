@@ -11,12 +11,32 @@ import { useMobileView } from "@/hooks/useMobileView";
 import { useState } from "react";
 
 const ICONS = [
-  { label: "X", Component: XIcon },
-  { label: "GitHub", Component: GithubIcon },
-  { label: "Spotify", Component: SpotifyIcon },
-  { label: "LinkedIn", Component: LinkedinIcon },
-  { label: "Discord", Component: DiscordIcon },
-  { label: "LeetCode", Component: LeetcodeIcon },
+  { label: "X", Component: XIcon, link: "https://x.com" },
+  {
+    label: "GitHub",
+    Component: GithubIcon,
+    link: "https://github.com/TusharChauhan09",
+  },
+  {
+    label: "Spotify",
+    Component: SpotifyIcon,
+    link: "https://open.spotify.com/user/6kimo6pmyoeuf4ln638686561",
+  },
+  {
+    label: "LinkedIn",
+    Component: LinkedinIcon,
+    link: "https://www.linkedin.com/in/tushar9/",
+  },
+  {
+    label: "Discord",
+    Component: DiscordIcon,
+    link: "https://discord.gg/BDuXYGfNgy",
+  },
+  {
+    label: "LeetCode",
+    Component: LeetcodeIcon,
+    link: "https://leetcode.com/u/tushar5",
+  },
 ];
 
 const Socials = ({ className }: { className: string }) => {
@@ -43,12 +63,14 @@ const Socials = ({ className }: { className: string }) => {
       >
         <AnimatePresence mode="wait">
           <motion.span
-            key={hovered} 
+            key={hovered}
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.3 }}
-            className={` absolute ${isMobile ? " right-[35%] -bottom-3" : "-bottom-3"}`}
+            className={` absolute ${
+              isMobile ? " right-[35%] -bottom-3" : "-bottom-3"
+            }`}
           >
             {hovered || "Socials"}
           </motion.span>
@@ -57,57 +79,70 @@ const Socials = ({ className }: { className: string }) => {
       <motion.div
         className={`grid grid-cols-2 gap-2 ${isMobile ? "mt-1" : ""}`}
       >
-        <motion.div
-         className="flex flex-col gap-1">
-          {ICONS.slice(0, 3).map(({ label, Component }) => (
-            <motion.div
-              initial={{
-                opacity: 0,
-                x: -15,
-              }}
-              animate={{
-                scale: hovered === label ? 1.1 : 1,
-              }}
-              whileInView={{
-                opacity: 1,
-                x: 0,
-                transition: { duration: 0.8, delay: 0.3 },
-              }}
+        <motion.div className="flex flex-col gap-1">
+          {ICONS.slice(0, 3).map(({ label, Component, link }) => (
+            <a
+              href={link}
+              target="_blank"
+              rel="noopener noreferrer"
               key={label}
-              className="cursor-pointer"
+              className="cursor-pointer relative z-10"
               onMouseEnter={() => setHovered(label)}
               onMouseLeave={() => setHovered(null)}
               onTouchStart={() => setHovered(label)}
               onTouchEnd={() => setHovered(null)}
             >
-              <Component size={50} />
-            </motion.div>
+              <motion.div
+                initial={{
+                  opacity: 0,
+                  x: -15,
+                }}
+                animate={{
+                  scale: hovered === label ? 1.1 : 1,
+                }}
+                whileInView={{
+                  opacity: 1,
+                  x: 0,
+                  transition: { duration: 0.8, delay: 0.3 },
+                }}
+                className="cursor-pointer"
+              >
+                <Component size={50} />
+              </motion.div>
+            </a>
           ))}
         </motion.div>
         <div className="flex flex-col gap-1">
-          {ICONS.slice(3, 6).map(({ label, Component }) => (
-            <motion.div
-              initial={{
-                opacity: 0,
-                x: 15,
-              }}
-              animate={{
-                scale: hovered === label ? 1.1 : 1,
-              }}
-              whileInView={{
-                opacity: 1,
-                x: 0,
-                transition: { duration: 0.8, delay: 0.3 },
-              }}
-              className="cursor-pointer"
+          {ICONS.slice(3, 6).map(({ label, Component, link }) => (
+            <a
+              href={link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="cursor-pointer relative z-10"
               key={label}
               onMouseEnter={() => setHovered(label)}
               onMouseLeave={() => setHovered(null)}
               onTouchStart={() => setHovered(label)}
               onTouchEnd={() => setHovered(null)}
             >
-              <Component size={50} />
-            </motion.div>
+              <motion.div
+                initial={{
+                  opacity: 0,
+                  x: 15,
+                }}
+                animate={{
+                  scale: hovered === label ? 1.1 : 1,
+                }}
+                whileInView={{
+                  opacity: 1,
+                  x: 0,
+                  transition: { duration: 0.8, delay: 0.3 },
+                }}
+                className="cursor-pointer"
+              >
+                <Component size={50} />
+              </motion.div>
+            </a>
           ))}
         </div>
       </motion.div>
