@@ -10,6 +10,7 @@ import Skills from "./BentoCards/Skills";
 import Nasa from "./BentoCards/Nasa";
 import Spotify from "./BentoCards/Spotify";
 import Quotes from "./BentoCards/Quotes";
+import WorkBento from "./BentoCards/WorkBento";
 
 const BentoGrid: React.FC = () => {
   const isMobile = useMobileView();
@@ -34,15 +35,11 @@ const BentoGrid: React.FC = () => {
             isMobile ? " col-span-1 row-span-2 " : "col-span-1 row-span-2"
           }
         />
-        <BentoCard
+        <WorkBento
           className={
-            isMobile
-              ? " col-span-2 row-span-2 flex items-center justify-center"
-              : "col-span-2 row-span-2 flex items-center justify-center"
+            isMobile ? " col-span-2 row-span-2" : "col-span-2 row-span-2"
           }
-        >
-          Time line by loki
-        </BentoCard>
+        />
         <Skills
           className={
             isMobile ? "col-span-2 row-span-1" : "col-span-1 row-span-3"

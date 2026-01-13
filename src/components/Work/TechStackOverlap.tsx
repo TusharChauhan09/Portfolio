@@ -124,8 +124,7 @@ const TechStackOverlap = ({
 
         return (
           <div
-            key={index}
-            className={`relative rounded-full flex items-center justify-center border transition-all duration-300 ease-out cursor-pointer ${
+            key={index}className={`relative rounded-full flex items-center justify-center border transition-all duration-300 ease-out cursor-pointer ${
               isDark
                 ? "bg-neutral-900 border-neutral-700"
                 : "bg-white border-neutral-300"
@@ -153,8 +152,11 @@ const TechStackOverlap = ({
               )}
             </AnimatePresence>
 
-            {/* Logo */}
-            <div className="flex items-center justify-center">
+            {/* Logo - Scaled up */}
+            <div
+              className="flex items-center justify-center"
+              style={{ transform: "scale(1.4)" }}
+            >
               {LogoComponent ? (
                 <LogoComponent />
               ) : (
