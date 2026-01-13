@@ -99,19 +99,15 @@ export default function Skills({ className }: SkillsProps) {
   const gapVertical = 12; // gap-y-3 = 12px
 
   // Calculate total width/height for each row based on actual dimensions
-  const totalWidth1 = isMobile
-    ? skillsCount1 * skillWidth + (skillsCount1 - 1) * gapHorizontal
-    : 0;
-  const totalHeight1 = isMobile
-    ? 0
-    : skillsCount1 * skillHeight + (skillsCount1 - 1) * gapVertical;
+  const totalWidth1 =
+    skillsCount1 * skillWidth + (skillsCount1 - 1) * gapHorizontal;
+  const totalHeight1 =
+    skillsCount1 * skillHeight + (skillsCount1 - 1) * gapVertical;
 
-  const totalWidth2 = isMobile
-    ? skillsCount2 * skillWidth2 + (skillsCount2 - 1) * gapHorizontal
-    : 0;
-  const totalHeight2 = isMobile
-    ? 0
-    : skillsCount2 * skillHeight2 + (skillsCount2 - 1) * gapVertical;
+  const totalWidth2 =
+    skillsCount2 * skillWidth2 + (skillsCount2 - 1) * gapHorizontal;
+  const totalHeight2 =
+    skillsCount2 * skillHeight2 + (skillsCount2 - 1) * gapVertical;
 
   return (
     <BentoCard className={className}>
@@ -130,8 +126,9 @@ export default function Skills({ className }: SkillsProps) {
           } items-center h-full`}
         >
           <motion.div
+            key={isMobile ? "row1-h" : "row1-v"}
             className={`flex ${
-              isMobile ? "gap-x-3" : "flex-col gap-y-3"
+              isMobile ? "flex-row gap-x-3" : "flex-col gap-y-3"
             } items-center h-full`}
             style={{
               width: isMobile ? `${totalWidth1 * 2}px` : "auto",
@@ -157,7 +154,7 @@ export default function Skills({ className }: SkillsProps) {
             }}
           >
             {[...skillsRow1, ...skillsRow1].map((SkillComponent, index) => (
-              <div key={index} className="flex-shrink-0 w-15 h-15">
+              <div key={index} className="flex-shrink-0 w-[60px] h-[60px]">
                 <SkillComponent />
               </div>
             ))}
@@ -172,8 +169,9 @@ export default function Skills({ className }: SkillsProps) {
           } items-center h-full`}
         >
           <motion.div
+            key={isMobile ? "row2-h" : "row2-v"}
             className={`flex ${
-              isMobile ? "gap-x-3" : "flex-col gap-y-3"
+              isMobile ? "flex-row gap-x-3" : "flex-col gap-y-3"
             } items-center h-full`}
             style={{
               width: isMobile ? `${totalWidth2 * 2}px` : "auto",
@@ -199,7 +197,7 @@ export default function Skills({ className }: SkillsProps) {
             }}
           >
             {[...skillsRow2, ...skillsRow2].map((SkillComponent, index) => (
-              <div key={index} className="flex-shrink-0 w-14 h-14">
+              <div key={index} className="flex-shrink-0 w-[56px] h-[56px]">
                 <SkillComponent />
               </div>
             ))}
