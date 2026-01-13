@@ -8,10 +8,28 @@ interface QuoteResponse {
   categories: string[];
 }
 
+// In-memory cache
+let cachedQuote: {
+  data: QuoteResponse;
+  timestamp: number;
+} | null = null;
+
+const CACHE_DURATION = 60 * 60 * 1000; // 1 hour in milliseconds
+
 export async function GET() {
   try {
-    // Using v2 randomquotes - no category filter since "movies" isn't available
-    // Returns inspirational/wisdom quotes from various authors
+    // Check if we have a valid cached quote
+    if (cachedQuote && Date.now() - cachedQuote.timestamp < CACHE_DURATION) {
+      return NextResponse.json({
+        quote: cachedQuote.data.quote,
+        author: cachedQuote.data.author,
+        work: cachedQuote.data.work || null,
+        categories: cachedQuote.data.categories,
+        cached: true,
+      });
+    }
+
+    // Fetch new quote
     const response = await axios.get<QuoteResponse[]>(
       "https://api.api-ninjas.com/v2/randomquotes",
       {
@@ -29,14 +47,41 @@ export async function GET() {
 
     const selectedQuote = quotes[0];
 
-    return NextResponse.json({
-      quote: selectedQuote.quote,
-      author: selectedQuote.author,
-      work: selectedQuote.work || null,
-      categories: selectedQuote.categories,
-    });
+    // Store in cache
+    cachedQuote = {
+      data: selectedQuote,
+      timestamp: Date.now(),
+    };
+
+    return NextResponse.json(
+      {
+        quote: selectedQuote.quote,
+        author: selectedQuote.author,
+        work: selectedQuote.work || null,
+        categories: selectedQuote.categories,
+        cached: false,
+      },
+      {
+        headers: {
+          "Cache-Control": "public, s-maxage=3600, stale-while-revalidate=7200",
+        },
+      }
+    );
   } catch (error: any) {
     console.error("Quote API Error:", error?.response?.data || error.message);
+
+    // If we have a cached quote and API fails, return the cached one
+    if (cachedQuote) {
+      return NextResponse.json({
+        quote: cachedQuote.data.quote,
+        author: cachedQuote.data.author,
+        work: cachedQuote.data.work || null,
+        categories: cachedQuote.data.categories,
+        cached: true,
+        stale: true,
+      });
+    }
+
     return NextResponse.json(
       { error: "Failed to fetch quote" },
       { status: 500 }

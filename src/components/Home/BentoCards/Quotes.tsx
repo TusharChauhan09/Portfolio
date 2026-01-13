@@ -22,6 +22,18 @@ const Quotes = ({ className }: { className: string }) => {
       setIsLoading(true);
       setError(null);
 
+      // Check for cached quote
+      const cachedData = localStorage.getItem("quote_cache");
+      if (cachedData) {
+        const { quote, timestamp } = JSON.parse(cachedData);
+        // Check if cache is less than 1 hour old (3600000 ms)
+        if (Date.now() - timestamp < 3600000) {
+          setQuoteData(quote);
+          setIsLoading(false);
+          return;
+        }
+      }
+
       const response = await fetch("/api/quotes");
 
       if (!response.ok) {
@@ -34,10 +46,27 @@ const Quotes = ({ className }: { className: string }) => {
         throw new Error("Invalid quote data");
       }
 
+      // Save to cache
+      localStorage.setItem(
+        "quote_cache",
+        JSON.stringify({
+          quote: data,
+          timestamp: Date.now(),
+        })
+      );
+
       setQuoteData(data);
     } catch (err: any) {
       console.error("Error fetching quote:", err);
       setError(err.message || "Failed to load");
+
+      // Fallback to cache even if expired if fetch fails
+      const cachedData = localStorage.getItem("quote_cache");
+      if (cachedData) {
+        const { quote } = JSON.parse(cachedData);
+        setQuoteData(quote);
+        setError(null); // Clear error since we have content
+      }
     } finally {
       setIsLoading(false);
     }

@@ -124,7 +124,8 @@ const TechStackOverlap = ({
 
         return (
           <div
-            key={index}className={`relative rounded-full flex items-center justify-center border transition-all duration-300 ease-out cursor-pointer ${
+            key={index}
+            className={`relative rounded-full flex items-center justify-center border overflow-hidden ${
               isDark
                 ? "bg-neutral-900 border-neutral-700"
                 : "bg-white border-neutral-300"
@@ -132,7 +133,7 @@ const TechStackOverlap = ({
             style={{
               width: size,
               height: size,
-              marginLeft: index === 0 ? 0 : -(size * 0.4),
+              marginLeft: index === 0 ? 0 : -(size * 0.5),
               zIndex: hoveredIndex === index ? 50 : visibleStack.length - index,
             }}
             onMouseEnter={() => setHoveredIndex(index)}
@@ -152,11 +153,9 @@ const TechStackOverlap = ({
               )}
             </AnimatePresence>
 
-            {/* Logo - Scaled up */}
-            <div
-              className="flex items-center justify-center"
-              style={{ transform: "scale(1.4)" }}
-            >
+            {/* Logo */}
+            <div className="flex items-center justify-center"
+            style={{ transform: "scale(1.2)" }}>
               {LogoComponent ? (
                 <LogoComponent />
               ) : (

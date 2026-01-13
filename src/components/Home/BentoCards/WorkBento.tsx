@@ -90,7 +90,7 @@ const WorkBento = ({ className }: { className: string }) => {
             >
               {/* Project Title - Slides up first */}
               <motion.h3
-                className="smalll text-white text-lg md:text-xl tracking-wide"
+                className="smalll text-black text-lg md:text-xl tracking-wide"
                 initial={{ opacity: 0, y: 20 }}
                 animate={
                   isHovered ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
@@ -125,18 +125,18 @@ const WorkBento = ({ className }: { className: string }) => {
               href={currentProject.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-1.5 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 transition-colors"
+              className="p-1.5 bg-black/20 backdrop-blur-sm rounded-full hover:bg-black/30 transition-colors"
             >
-              <IconExternalLink size={16} className="text-white" />
+              <IconExternalLink size={16} className="text-black" />
             </Link>
           )}
           <Link
             href={currentProject.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="p-1.5 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 transition-colors"
+            className="p-1.5 bg-black/20 backdrop-blur-sm rounded-full hover:bg-black/30 transition-colors"
           >
-            <IconBrandGithub size={16} className="text-white" />
+            <IconBrandGithub size={16} className="text-black" />
           </Link>
         </div>
 
@@ -145,17 +145,17 @@ const WorkBento = ({ className }: { className: string }) => {
           <>
             <button
               onClick={prevProject}
-              className="absolute left-2 top-1/2 -translate-y-1/2 p-1 bg-white/20 backdrop-blur-sm rounded-full opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white/30"
+              className="absolute left-2 top-1/2 -translate-y-1/2 p-1 bg-black/20 backdrop-blur-sm rounded-full opacity-0 group-hover:opacity-100 transition-opacity hover:bg-black/30"
               aria-label="Previous project"
             >
-              <IconChevronLeft size={18} className="text-white" />
+              <IconChevronLeft size={18} className="text-black" />
             </button>
             <button
               onClick={nextProject}
-              className="absolute right-2 top-1/2 -translate-y-1/2 p-1 bg-white/20 backdrop-blur-sm rounded-full opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white/30"
+              className="absolute right-2 top-1/2 -translate-y-1/2 p-1 bg-black/20 backdrop-blur-sm rounded-full opacity-0 group-hover:opacity-100 transition-opacity hover:bg-black/30"
               aria-label="Next project"
             >
-              <IconChevronRight size={18} className="text-white" />
+              <IconChevronRight size={18} className="text-black" />
             </button>
           </>
         )}
@@ -169,8 +169,8 @@ const WorkBento = ({ className }: { className: string }) => {
                 onClick={() => setCurrentIndex(idx)}
                 className={`w-1.5 h-1.5 rounded-full transition-all ${
                   idx === currentIndex
-                    ? "bg-white w-3"
-                    : "bg-white/40 hover:bg-white/60"
+                    ? "bg-black w-3"
+                    : "bg-black/40 hover:bg-black/60"
                 }`}
                 aria-label={`Go to project ${idx + 1}`}
               />
