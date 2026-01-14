@@ -17,7 +17,9 @@ const IconCard = ({
     typeof children.type === "string" &&
     children.type === "svg"
   ) {
-    const childEl = children as React.ReactElement<any>;
+    const childEl = children as React.ReactElement<
+      React.SVGProps<SVGSVGElement>
+    >;
     coloredChild = React.cloneElement(childEl, {
       style: {
         ...(childEl.props.style || {}),

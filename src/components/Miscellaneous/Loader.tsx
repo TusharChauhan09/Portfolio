@@ -80,7 +80,7 @@ export default function Loader({ size = "sm", className = "" }: LoaderProps) {
               backgroundColor: "transparent",
               boxSizing: "border-box",
               borderRadius: config.radius,
-              // @ts-ignore - CSS custom property
+              
               "--cell-color": colors[index],
             } as React.CSSProperties
           }

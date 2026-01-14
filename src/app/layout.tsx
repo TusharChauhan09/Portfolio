@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import "./globals.css";
 import { neu, lombok, cath, jap, playfair } from "@/lib/font";
 

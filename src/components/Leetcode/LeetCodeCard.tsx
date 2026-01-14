@@ -55,14 +55,6 @@ function mergeCalendars(
   return merged;
 }
 
-// Helper: get the start of the week (Sunday) for a given date
-function getStartOfWeek(date: Date) {
-  const d = new Date(date);
-  d.setDate(d.getDate() - d.getDay());
-  d.setHours(0, 0, 0, 0);
-  return d;
-}
-
 // Helper: format date as YYYY-MM-DD
 function formatDate(date: Date) {
   return date.toISOString().slice(0, 10);
@@ -77,12 +69,6 @@ function getColorIndex(count: number) {
   return 4;
 }
 
-// Medium block size and margin for a slightly larger heatmap
-const BLOCK_SIZE = 9;
-const BLOCK_MARGIN = 3;
-const BLOCK_RADIUS = 3;
-const WEEKS_DESKTOP = 53;
-const WEEKS_MOBILE = 26;
 const DAYS = 7;
 
 const MONTH_LABELS = [
@@ -150,7 +136,7 @@ const LeetCodeCard = ({ username }: { username: string }) => {
         setValues(arr);
         setLoading(false);
       })
-      .catch((e) => {
+      .catch(() => {
         setError("Failed to fetch LeetCode data");
         setLoading(false);
       });
@@ -187,7 +173,9 @@ const LeetCodeCard = ({ username }: { username: string }) => {
   while (current <= endDate) {
     const dateStr = formatDate(current);
     allDates.push({ date: dateStr, count: dateToCount[dateStr] || 0 });
-    current.setDate(current.getDate() + 1);
+    const next = new Date(current);
+    next.setDate(next.getDate() + 1);
+    current = next;
   }
   // If the last week is incomplete, pad with empty cells
   const remainder = allDates.length % 7;

@@ -1,16 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import {
-  motion,
-  useScroll,
-  useSpring,
-  useMotionValueEvent,
-} from "motion/react";
+import { motion, useScroll, useSpring } from "motion/react";
 
 export default function SideScroller() {
   const [isVisible, setIsVisible] = useState(false);
-  const [scrollPercent, setScrollPercent] = useState(0);
   const { scrollYProgress } = useScroll();
 
   // Smooth spring animation for the scroll progress - fast & responsive
@@ -18,11 +12,6 @@ export default function SideScroller() {
     stiffness: 400,
     damping: 40,
     mass: 0.5,
-  });
-
-  // Track scroll progress changes
-  useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    setScrollPercent(latest);
   });
 
   useEffect(() => {

@@ -56,9 +56,11 @@ const Quotes = ({ className }: { className: string }) => {
       );
 
       setQuoteData(data);
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error("Error fetching quote:", err);
-      setError(err.message || "Failed to load");
+      const errorMessage =
+        err instanceof Error ? err.message : "Failed to load";
+      setError(errorMessage);
 
       // Fallback to cache even if expired if fetch fails
       const cachedData = localStorage.getItem("quote_cache");
@@ -75,12 +77,6 @@ const Quotes = ({ className }: { className: string }) => {
   useEffect(() => {
     fetchQuote();
   }, []);
-
-  // Truncate quote if too long
-  const truncateQuote = (text: string, maxLength: number = 120) => {
-    if (text.length <= maxLength) return text;
-    return text.substring(0, maxLength).trim() + "...";
-  };
 
   // Loading state
   if (isLoading) {
@@ -136,7 +132,7 @@ const Quotes = ({ className }: { className: string }) => {
 
           {/* Quote Text */}
           <p className="font-[family-name:var(--font-playfair)] text-xs md:text-sm leading-relaxed text-black dark:text-white/90 italic font-normal z-10 line-clamp-3 md:line-clamp-4 pl-6 pr-2 pt-2 ">
-            "{quoteData.quote}"
+            &quot;{quoteData.quote}&quot;
           </p>
 
           {/* Author & Movie/Work - Absolute Bottom Right */}

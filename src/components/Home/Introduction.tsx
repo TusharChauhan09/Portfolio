@@ -26,6 +26,7 @@ export default function Introduction({ name }: { name: string }) {
 
   useEffect(() => {
     introAnimation();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -41,7 +42,9 @@ export default function Introduction({ name }: { name: string }) {
       <motion.div className="flex items-center justify-between pt-2 max-[425px]:flex-col max-[425px]:items-center max-[425px]:gap-4">
         {/* Left: Heading and Name/Handle */}
         <div className="flex flex-col gap-1 max-[425px]:order-2 w-full max-[425px]:items-center">
-          <motion.h1 className="text-sm smalll mb-1">Hey It's me</motion.h1>
+          <motion.h1 className="text-sm smalll mb-1">
+            Hey It&apos;s me
+          </motion.h1>
           <div className="flex items-center gap-3 max-[425px]:justify-center max-[425px]:w-full">
             <motion.h1
               className={`jap text-4xl ${theme === "dark" ? "demon-red" : ""}`}

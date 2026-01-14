@@ -20,14 +20,25 @@ export async function POST(req: NextRequest) {
     return NextResponse.json(response.data, {
       status: response.status,
     });
-  } catch (error: any) {
-    console.error("Proxy Error:", error.message);
+  } catch (error: unknown) {
+    const errorMessage =
+      error instanceof Error ? error.message : "Unknown error";
+    console.error("Proxy Error:", errorMessage);
+
+    // Type guard for axios error
+    const status =
+      error &&
+      typeof error === "object" &&
+      "response" in error &&
+      error.response &&
+      typeof error.response === "object" &&
+      "status" in error.response
+        ? (error.response as { status: number }).status
+        : 500;
 
     return NextResponse.json(
       { error: "Failed to fetch from LeetCode." },
-      {
-        status: error?.response?.status || 500,
-      }
+      { status }
     );
   }
 }

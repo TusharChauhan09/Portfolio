@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import MailFilledIcon from "@/components/ui/mail-filled-icon";
 
 const ContactButton = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [, setIsOpen] = useState(false);
 
   return (
     <button

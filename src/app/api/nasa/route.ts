@@ -58,8 +58,10 @@ export async function GET(req: NextRequest) {
         "Cache-Control": "public, s-maxage=3600, stale-while-revalidate=7200",
       },
     });
-  } catch (error: any) {
-    console.error("NASA Proxy Error:", error.message);
+  } catch (error: unknown) {
+    const errorMessage =
+      error instanceof Error ? error.message : "Unknown error";
+    console.error("NASA Proxy Error:", errorMessage);
 
     return NextResponse.json(
       { error: "Failed to fetch from NASA API" },

@@ -67,8 +67,19 @@ export async function GET() {
         },
       }
     );
-  } catch (error: any) {
-    console.error("Quote API Error:", error?.response?.data || error.message);
+  } catch (error: unknown) {
+    const errorData =
+      error &&
+      typeof error === "object" &&
+      "response" in error &&
+      error.response &&
+      typeof error.response === "object" &&
+      "data" in error.response
+        ? (error.response as { data: unknown }).data
+        : null;
+    const errorMessage =
+      error instanceof Error ? error.message : "Unknown error";
+    console.error("Quote API Error:", errorData || errorMessage);
 
     // If we have a cached quote and API fails, return the cached one
     if (cachedQuote) {

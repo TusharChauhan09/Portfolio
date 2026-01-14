@@ -2,14 +2,16 @@
 
 import React from "react";
 import GitHubCalendar from "react-github-calendar";
+
 import { useThemeMode } from "@/hooks/useThemeMode";
 import { useMobileView } from "@/hooks/useMobileView";
 
 import type { ReactElement, CSSProperties, RefObject } from "react";
 import { Tooltip } from "react-tooltip";
 
-//props: refrance
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Activity = any;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type BlockElement = any;
 type DayName = "mon" | "tue" | "wed" | "thu" | "fri" | "sat" | "sun";
 type Labels = Record<string, string>;

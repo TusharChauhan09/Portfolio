@@ -37,24 +37,21 @@ const Navbar = () => {
   const path = usePathname();
   const isMobile = useMobileView();
   const theme = useThemeMode();
+  const router = useRouter();
+
   return (
     <nav className="flex justify-between items-center py-4 px-4 min-md:px-50 w-full transition-colors bg-background text-foreground">
       <div className="flex items-center hover:cursor-pointer  ">
-        {(() => {
-          const router = useRouter();
-          return (
-            <div
-              className="cursor-pointer select-none"
-              onClick={() => router.push("/")}
-            >
-              <JapaneseNameLogo
-                size={120}
-                color={theme === "dark" ? "#ff0000" : "black"}
-                glowOnHover
-              />
-            </div>
-          );
-        })()}
+        <div
+          className="cursor-pointer select-none"
+          onClick={() => router.push("/")}
+        >
+          <JapaneseNameLogo
+            size={120}
+            color={theme === "dark" ? "#ff0000" : "black"}
+            glowOnHover
+          />
+        </div>
       </div>
       <div className=" flex items-center gap-4 justify-center">
         {isMobile ? (

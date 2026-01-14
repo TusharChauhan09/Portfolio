@@ -1,6 +1,5 @@
 "use client";
-import { motion, stagger, AnimatePresence } from "motion/react";
-import BentoCard from "./BentoCard";
+import { motion, AnimatePresence } from "motion/react";
 import XIcon from "./Icons/XIcon";
 import GithubIcon from "./Icons/GithubIcon";
 import SpotifyIcon from "./Icons/Spotify";

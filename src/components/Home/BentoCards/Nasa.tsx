@@ -44,9 +44,11 @@ const Nasa = ({ className }: { className: string }) => {
         }
 
         setApodData(apod);
-      } catch (err: any) {
+      } catch (err: unknown) {
         console.error("Error fetching APOD:", err);
-        setError(err.message || "Failed to load");
+        const errorMessage =
+          err instanceof Error ? err.message : "Failed to load";
+        setError(errorMessage);
       } finally {
         setIsLoading(false);
       }
