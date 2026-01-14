@@ -55,7 +55,7 @@ const Navbar = () => {
       </div>
       <div className=" flex items-center gap-4 justify-center">
         {isMobile ? (
-          <Hamburger isOpen={false} />
+          <Hamburger />
         ) : (
           <>
             <nav className="hidden gap-1 px-1 py-5 md:flex items-center">
