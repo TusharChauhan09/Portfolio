@@ -23,7 +23,7 @@ const certificates: string[] = [
 export default function Home() {
   return (
     <div className="flex flex-col items-center justify-center space-y-8">
-      <Introduction name={"Enlight"} />
+      <Introduction name={"Tushar"} />
       <BentoGrid />
       <SkillsSection />
       <div className="w-full max-w-5xl mx-auto px-4 py-4">
