@@ -40,6 +40,9 @@ export const SKILLS = {
   Figma: "Figma",
   Postman: "Postman",
   VSCode: "VSCode",
+  Gemini: "Gemini",
+  GitHub: "GitHub",
+  E2B: "E2B",
 } as const;
 
 export type SkillName = (typeof SKILLS)[keyof typeof SKILLS];

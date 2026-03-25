@@ -42,6 +42,10 @@ const navItems = [
     name: "Skills",
     href: "/skills",
   },
+  {
+    name: "Certificates",
+    href: "/certificates",
+  },
 ];
 
 export const Hamburger = () => {

@@ -269,6 +269,23 @@ body {
   color: #ff0000;
 }
 
+@keyframes certificate-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-certificate-scroll {
+  animation: certificate-scroll 20s linear infinite;
+}
+
+.animate-certificate-scroll:hover {
+  animation-play-state: paused;
+}
+
 @keyframes red-glow {
   0% {
     box-shadow: 0 0 0 0 #ff0000;

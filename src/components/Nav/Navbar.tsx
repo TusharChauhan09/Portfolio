@@ -11,10 +11,10 @@ import { useMobileView } from "@/hooks/useMobileView";
 import { useThemeMode } from "@/hooks/useThemeMode";
 
 const navItems = [
-  {
-    name: "About",
-    href: "/about",
-  },
+  // {
+  //   name: "About",
+  //   href: "/about",
+  // },
   {
     name: "Blog",
     href: "/blog",
@@ -30,6 +30,10 @@ const navItems = [
   {
     name: "Skills",
     href: "/skills",
+  },
+  {
+    name: "Certificates",
+    href: "/certificates",
   },
 ];
 
