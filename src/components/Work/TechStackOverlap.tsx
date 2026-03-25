@@ -114,8 +114,12 @@ const TechStackOverlap = ({
     return null;
   }
 
-  const visibleStack = stack.slice(0, maxVisible);
-  const remainingCount = stack.length - maxVisible;
+  // Only show items that have a logo component
+  const withLogos = stack.filter((tech) => skillLogoMap[tech]);
+  const withoutLogos = stack.filter((tech) => !skillLogoMap[tech]);
+
+  const visibleStack = withLogos.slice(0, maxVisible);
+  const remainingCount = withLogos.length - maxVisible + withoutLogos.length;
 
   return (
     <div className={`flex items-center ${className}`}>
@@ -156,17 +160,7 @@ const TechStackOverlap = ({
             {/* Logo */}
             <div className="flex items-center justify-center"
             style={{ transform: "scale(1.2)" }}>
-              {LogoComponent ? (
-                <LogoComponent />
-              ) : (
-                <span
-                  className={`text-xs font-mono font-bold ${
-                    isDark ? "text-white" : "text-black"
-                  }`}
-                >
-                  {tech.slice(0, 2).toUpperCase()}
-                </span>
-              )}
+              {LogoComponent && <LogoComponent />}
             </div>
           </div>
         );

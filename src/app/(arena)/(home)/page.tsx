@@ -3,6 +3,10 @@ import BentoGrid from "@/components/Home/BentoGrid";
 import CertificateCarousel from "@/components/Home/CertificateCarousel";
 import Timeline from "@/components/Home/Timeline";
 import ContactForm from "@/components/Home/ContactForm";
+import Link from "next/link";
+import ProjectTemplate from "@/components/Work/ProjectTemplate";
+import { Projects } from "@/data/projects";
+import SkillsSection from "@/components/Home/SkillsSection";
 
 const certificates: string[] = [
   "https://res.cloudinary.com/du8ekvenq/image/upload/v1774339901/Screenshot_2026-03-24_134054_xqstyd.png",
@@ -21,6 +25,25 @@ export default function Home() {
     <div className="flex flex-col items-center justify-center space-y-8">
       <Introduction name={"Enlight"} />
       <BentoGrid />
+      <SkillsSection />
+      <div className="w-full max-w-5xl mx-auto px-4 py-4">
+        <Link href="/work" className="jap text-3xl mb-4 block hover:opacity-80 transition-opacity">
+          Projects
+        </Link>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
+          {Projects.map((project, index) => (
+            <ProjectTemplate
+              key={index}
+              title={project.title}
+              description={project.description}
+              image={project.image}
+              github={project.github}
+              link={project.link}
+              stack={project.stack}
+            />
+          ))}
+        </div>
+      </div>
       <CertificateCarousel urls={certificates} />
       <Timeline />
       <ContactForm />
