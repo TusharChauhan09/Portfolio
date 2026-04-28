@@ -141,14 +141,14 @@ export default function Skills({ className }: SkillsProps) {
             transition={{
               repeat: Infinity,
               repeatType: "loop",
-              duration: 20,
+              duration: 40,
               ease: "linear",
             }}
             whileHover={{
               transition: {
                 repeat: Infinity,
                 repeatType: "loop",
-                duration: 25,
+                duration: 50,
                 ease: "linear",
               },
             }}
@@ -184,14 +184,14 @@ export default function Skills({ className }: SkillsProps) {
             transition={{
               repeat: Infinity,
               repeatType: "loop",
-              duration: 20,
+              duration: 40,
               ease: "linear",
             }}
             whileHover={{
               transition: {
                 repeat: Infinity,
                 repeatType: "loop",
-                duration: 25,
+                duration: 50,
                 ease: "linear",
               },
             }}

@@ -2,7 +2,7 @@
 
 import { useThemeMode } from "@/hooks/useThemeMode";
 import { useState } from "react";
-import { motion as m, AnimatePresence } from "motion/react";
+import { motion as m } from "motion/react";
 import {
   C,
   Cpp,
@@ -125,44 +125,35 @@ const TechStackOverlap = ({
     <div className={`flex items-center ${className}`}>
       {visibleStack.map((tech, index) => {
         const LogoComponent = skillLogoMap[tech];
+        const isHovered = hoveredIndex === index;
 
         return (
-          <div
+          <m.div
             key={index}
-            className={`relative rounded-full flex items-center justify-center border overflow-hidden ${
+            className={`relative rounded-full flex items-center justify-center border overflow-visible ${
               isDark
-                ? "bg-neutral-900 border-neutral-700"
-                : "bg-white border-neutral-300"
+                ? "bg-[#0a0a0a] border-white/15"
+                : "bg-[#fffef6] border-black/15"
             }`}
             style={{
               width: size,
               height: size,
               marginLeft: index === 0 ? 0 : -(size * 0.5),
-              zIndex: hoveredIndex === index ? 50 : visibleStack.length - index,
+              zIndex: isHovered ? 50 : visibleStack.length - index,
             }}
+            animate={{ scale: isHovered ? 1.15 : 1, y: isHovered ? -2 : 0 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
             onMouseEnter={() => setHoveredIndex(index)}
             onMouseLeave={() => setHoveredIndex(null)}
           >
-            <AnimatePresence>
-              {hoveredIndex === index && (
-                <m.div
-                  initial={{ opacity: 0, y: 10, scale: 0.8 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: 5, scale: 0.8 }}
-                  transition={{ duration: 0.2 }}
-                  className="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1.5 bg-neutral-900/90 backdrop-blur-md border border-white/20 text-white text-[10px] font-medium rounded-lg whitespace-nowrap z-[60] shadow-2xl pointer-events-none"
-                >
-                  {tech}
-                </m.div>
-              )}
-            </AnimatePresence>
-
-            {/* Logo */}
-            <div className="flex items-center justify-center"
-            style={{ transform: "scale(1.2)" }}>
+            {/* Logo clipped inside circle */}
+            <div
+              className="flex items-center justify-center w-full h-full rounded-full overflow-hidden"
+              style={{ transform: "scale(1.2)" }}
+            >
               {LogoComponent && <LogoComponent />}
             </div>
-          </div>
+          </m.div>
         );
       })}
 
@@ -171,8 +162,8 @@ const TechStackOverlap = ({
         <div
           className={`relative rounded-full flex items-center justify-center border ${
             isDark
-              ? "bg-neutral-900 border-neutral-700"
-              : "bg-white border-neutral-300"
+              ? "bg-[#0a0a0a] border-white/15"
+              : "bg-[#fffef6] border-black/15"
           }`}
           style={{
             width: size,
@@ -181,7 +172,6 @@ const TechStackOverlap = ({
             zIndex: 0,
           }}
         >
-          {/* Count text */}
           <span
             className={`text-xs font-mono font-bold ${
               isDark ? "text-white" : "text-black"

@@ -170,6 +170,8 @@
 }
 
 @theme inline {
+  --color-white: #e5e5e5;
+  --color-black: #1c1c1c;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -253,7 +255,7 @@ body {
 }
 
 .demon-red {
-  color: #ff0000;
+  color: #b91c1c;
 }
 
 .smalll {
@@ -266,7 +268,7 @@ body {
 
 ::selection {
   background: transparent;
-  color: #ff0000;
+  color: #b91c1c;
 }
 
 @keyframes certificate-scroll {
@@ -369,21 +371,35 @@ body {
 .ProfileDoubleBorder {
   position: relative;
   display: inline-block;
-  border-radius: 1rem;
-  border: 2px solid #fffef6; /* Light border for light mode */
-  padding: 3px;
+  width: 116px;
+  height: 116px;
+  border-radius: 0.75rem;
+  border: 1.5px solid #f5f3e7; /* Outer border, light mode default */
   background: #fffef6;
+  padding: 3px;
+  overflow: hidden;
   box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.1),
     0 0 0 1.5px rgba(255, 255, 255, 0.04);
-  overflow: hidden;
 }
 
-/* Light mode: visible double border */
+/* Inner border ring (matches BentoCard ::after) */
+.ProfileDoubleBorder::after {
+  content: "";
+  position: absolute;
+  inset: 1.5px;
+  border-radius: 0.65rem;
+  border: 1.5px solid rgba(0, 0, 0, 0.35);
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* Light mode explicit (matches BentoCard) */
 :root .ProfileDoubleBorder {
+  background: #fffef6;
   border-color: #f5f3e7;
 }
 
-/* Dark mode: keep inner border subtle white, and outer border dark */
+/* Dark mode: dark frame + subtle white inner */
 .dark .ProfileDoubleBorder {
   border-color: #2226;
   background: #0a0a0a;
@@ -454,6 +470,31 @@ body {
 .skills-container svg {
   width: 80% !important;
   height: 80% !important;
+}
+
+/* Mobile dock pill: ensure inner ::after ring follows full pill curve */
+.dock-pill,
+.dock-pill::after {
+  border-radius: 9999px !important;
+}
+.dock-pill::after {
+  inset: 1.5px;
+}
+
+/* View Transitions API — circular reveal of new theme over old.
+   Old snapshot stays painted while new one expands from click point.
+   No fade between them, so realtime swap looks like every element
+   re-skinning under an expanding circle. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+::view-transition-old(root) {
+  z-index: 1;
+}
+::view-transition-new(root) {
+  z-index: 2;
 }
 
 @layer base {

@@ -34,7 +34,7 @@ const WorkBento = ({ className }: { className: string }) => {
 
     const interval = setInterval(() => {
       nextProject();
-    }, 5000);
+    }, 8000);
 
     return () => clearInterval(interval);
   }, [isHovered]);
@@ -49,13 +49,13 @@ const WorkBento = ({ className }: { className: string }) => {
         onMouseLeave={() => setIsHovered(false)}
       >
         {/* Background Image */}
-        <AnimatePresence mode="wait">
+        <AnimatePresence mode="sync">
           <motion.div
             key={currentProject.image}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.6, ease: "easeInOut" }}
             className="absolute inset-0"
           >
             <motion.div
@@ -87,13 +87,13 @@ const WorkBento = ({ className }: { className: string }) => {
           initial={{ opacity: 0 }}
           whileHover={{ opacity: 1 }}
         >
-          <AnimatePresence mode="wait">
+          <AnimatePresence mode="sync">
             <motion.div
               key={currentProject.title}
               initial={{ opacity: 0, y: 30 }}
               animate={isHovered ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.4, ease: "easeOut" }}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
               className="space-y-3"
             >
               {/* Project Title - Slides up first */}

@@ -29,7 +29,7 @@ const ComingSoon = ({
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5, delay: 0.3 }}
-        className={`font-[family-name:var(--font-playfair)] italic font-bold text-5xl md:text-7xl tracking-wide ${
+        className={`font-[family-name:var(--font-instrument)] italic font-bold text-5xl md:text-7xl tracking-wide ${
           isDark ? "demon-red" : "text-foreground"
         }`}
       >
@@ -49,7 +49,7 @@ const ComingSoon = ({
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.5 }}
-        className="font-[family-name:var(--font-playfair)] italic text-base md:text-lg text-muted-foreground text-center max-w-sm mt-5"
+        className="font-[family-name:var(--font-instrument)] italic text-base md:text-lg text-muted-foreground text-center max-w-sm mt-5"
       >
         {subtitle}
       </motion.p>

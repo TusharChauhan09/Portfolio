@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import GitHubCalendar from "react-github-calendar";
 
 import { useThemeMode } from "@/hooks/useThemeMode";
@@ -74,18 +74,24 @@ export const selectLastHalfYear = (contributions: Activity[]) => {
 export default function GitHubHeatmap({ username }: { username: string }) {
   const themeMode = useThemeMode();
   const isMobile = useMobileView();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Define custom color scales
+  // Zero (level 0) color also drives loading skeleton — keep subtle vs page bg
   const customTheme = {
     dark: [
-      "#232323", // light black
+      "#1a1a1a", // near-black for empty + skeleton on dark bg
       "#7a1f1f", // dark red
       "#b22222", // firebrick
       "#ff0000", // red
       "#ff4d4d", // light red
     ],
     light: [
-      "#e0e0e0", // light gray for no commits
+      "#ebedf0", // subtle gray for empty + skeleton on light bg
       "#b0b0b0", // darker light gray
       "#666666", // darker gray
       "#222222", // black
@@ -121,6 +127,23 @@ export default function GitHubHeatmap({ username }: { username: string }) {
         return last26Weeks;
       }
     : undefined;
+
+  // Approximate calendar dimensions to reserve space and avoid layout flash
+  const weeks = isMobile ? 18 : 53;
+  const placeholderWidth = weeks * (blockSize + blockMargin);
+  const placeholderHeight = 7 * (blockSize + blockMargin) + fontSize + 8;
+
+  if (!mounted) {
+    return (
+      <div
+        style={{
+          width: placeholderWidth,
+          height: placeholderHeight,
+          maxWidth: "100%",
+        }}
+      />
+    );
+  }
 
   return (
     <>

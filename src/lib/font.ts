@@ -1,5 +1,5 @@
 import localFont from "next/font/local";
-import { Playfair_Display } from "next/font/google";
+import { Playfair_Display, Instrument_Serif } from "next/font/google";
 
 export const neu = localFont({
   src: [
@@ -52,4 +52,12 @@ export const playfair = Playfair_Display({
   weight: ["400", "500", "600"],
   style: ["normal", "italic"],
   variable: "--font-playfair",
+});
+
+// Instrument Serif — refined editorial serif (test theme)
+export const instrument = Instrument_Serif({
+  subsets: ["latin"],
+  weight: ["400"],
+  style: ["normal", "italic"],
+  variable: "--font-instrument",
 });

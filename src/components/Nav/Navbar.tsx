@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
 
-import { Hamburger } from "../Icones/Hamburger";
+import MobileDock from "./MobileDock";
 import JapaneseNameLogo from "../Logo/JapaneseNameLogo";
 import { ThemeToggle } from "../ThemeToggle";
 import { useMobileView } from "@/hooks/useMobileView";
@@ -31,10 +31,10 @@ const navItems = [
     name: "Skills",
     href: "/skills",
   },
-  {
-    name: "Certificates",
-    href: "/certificates",
-  },
+  // {
+  //   name: "Certificates",
+  //   href: "/certificates",
+  // },
 ];
 
 const Navbar = () => {
@@ -59,7 +59,7 @@ const Navbar = () => {
       </div>
       <div className=" flex items-center gap-4 justify-center">
         {isMobile ? (
-          <Hamburger />
+          <MobileDock />
         ) : (
           <>
             <nav className="hidden gap-1 px-1 py-5 md:flex items-center">

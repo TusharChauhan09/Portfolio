@@ -8,14 +8,64 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import Image from "next/image";
 
-export function ThemeToggle() {
+interface ThemeToggleProps {
+  charizardMode?: boolean;
+}
+
+// View Transition API typing
+type DocumentVT = Document & {
+  startViewTransition?: (cb: () => void | Promise<void>) => {
+    ready: Promise<void>;
+    finished: Promise<void>;
+  };
+};
+
+export function ThemeToggle({ charizardMode = false }: ThemeToggleProps) {
   const { theme, setTheme } = useTheme();
   const isDark = theme === "dark";
   const [showCharizard, setShowCharizard] = useState(false);
   const [showWhiteCharizard, setShowWhiteCharizard] = useState(false);
   const [animating, setAnimating] = useState(false);
 
+  const runRealtimeSwap = (target: "dark" | "light") => {
+    const doc = document as DocumentVT;
+
+    // Fallback for browsers without View Transitions — just swap.
+    if (!doc.startViewTransition) {
+      setTheme(target);
+      return;
+    }
+
+    setAnimating(true);
+
+    const transition = doc.startViewTransition(() => {
+      setTheme(target);
+    });
+
+    transition.ready.then(() => {
+      doc.documentElement.animate(
+        {
+          clipPath: ["inset(0 0 100% 0)", "inset(0 0 0% 0)"],
+        },
+        {
+          duration: 1100,
+          easing: "cubic-bezier(0.65, 0, 0.35, 1)",
+          pseudoElement: "::view-transition-new(root)",
+        }
+      );
+    });
+
+    transition.finished.finally(() => setAnimating(false));
+  };
+
   const handleToggle = () => {
+    const target: "dark" | "light" = isDark ? "light" : "dark";
+
+    if (!charizardMode) {
+      runRealtimeSwap(target);
+      return;
+    }
+
     if (!isDark) {
       setShowCharizard(true);
       setAnimating(true);
@@ -24,8 +74,8 @@ export function ThemeToggle() {
         setTimeout(() => {
           setShowCharizard(false);
           setAnimating(false);
-        }, 300); // fade out duration
-      }, 400); // switch theme after 0.7s
+        }, 300);
+      }, 400);
     } else {
       setShowWhiteCharizard(true);
       setAnimating(true);
@@ -75,6 +125,7 @@ export function ThemeToggle() {
         )}
         <span className="sr-only">Toggle theme</span>
       </button>
+
       <AnimatePresence onExitComplete={() => setShowCharizard(false)}>
         {showCharizard && (
           <motion.div

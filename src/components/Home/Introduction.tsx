@@ -1,11 +1,9 @@
 "use client";
-import React from "react";
 import { motion, stagger, useAnimate } from "motion/react";
 import { useThemeMode } from "@/hooks/useThemeMode";
 import Image from "next/image";
 import IntroductionImage from "../../../public/images/IntroductionImage.jpeg";
 import { useEffect, useState } from "react";
-import { DrawCircleText } from "@/components/Miscellaneous/DrawCircleText";
 import ResumeButton from "./ResumeButton";
 
 export default function Introduction({ name }: { name: string }) {
@@ -68,8 +66,13 @@ export default function Introduction({ name }: { name: string }) {
               href="https://x.com/TusharChau09"
               target="_blank"
               rel="noopener noreferrer"
-              className="relative group hover:scale-110 transition-transform"
+              className="relative group inline-flex"
+              variants={{ rest: { scale: 1 }, hover: { scale: 1.12 } }}
+              initial="rest"
+              animate="rest"
               whileHover="hover"
+              whileTap={{ scale: 0.92 }}
+              transition={{ type: "spring", stiffness: 400, damping: 18 }}
             >
               <motion.span
                 className="absolute -top-6 left-1/2 -translate-x-1/2 bg-black dark:bg-white text-white dark:text-black text-[10px] smalll px-2 py-0.5 rounded-md whitespace-nowrap pointer-events-none"
@@ -90,8 +93,13 @@ export default function Introduction({ name }: { name: string }) {
               href="https://github.com/TusharChauhan09"
               target="_blank"
               rel="noopener noreferrer"
-              className="relative group hover:scale-110 transition-transform"
+              className="relative group inline-flex"
+              variants={{ rest: { scale: 1 }, hover: { scale: 1.12 } }}
+              initial="rest"
+              animate="rest"
               whileHover="hover"
+              whileTap={{ scale: 0.92 }}
+              transition={{ type: "spring", stiffness: 400, damping: 18 }}
             >
               <motion.span
                 className="absolute -top-6 left-1/2 -translate-x-1/2 bg-black dark:bg-white text-white dark:text-black text-[10px] smalll px-2 py-0.5 rounded-md whitespace-nowrap pointer-events-none"
@@ -118,7 +126,7 @@ export default function Introduction({ name }: { name: string }) {
               alt="Japanese Name Logo"
               width={110}
               height={110}
-              className="rounded-2xl"
+              className="rounded-[0.55rem] object-cover w-[107px] h-[107px] block"
             />
           </div>
         </div>
@@ -141,34 +149,14 @@ export default function Introduction({ name }: { name: string }) {
               {line
                 .split(/\s+/)
                 .filter((w) => w.length > 0)
-                .map((word, wordIdx) => {
-                  // Insert DrawCircleText after "a" in the first line
-                  if (lineIdx === 0 && word === "a") {
-                    return (
-                      <React.Fragment key={`w-${lineIdx}-${wordIdx}`}>
-                        <motion.span
-                          style={{ opacity: 0, filter: "blur(10px)", y: 10 }}
-                        >
-                          {word}
-                        </motion.span>
-                        <motion.span
-                          className="mr-[0.5]"
-                          style={{ opacity: 0, filter: "blur(10px)", y: 10 }}
-                        >
-                          <DrawCircleText text="Full Stack Developer" />
-                        </motion.span>
-                      </React.Fragment>
-                    );
-                  }
-                  return (
-                    <motion.span
-                      style={{ opacity: 0, filter: "blur(10px)", y: 10 }}
-                      key={`w-${lineIdx}-${wordIdx}`}
-                    >
-                      {word}
-                    </motion.span>
-                  );
-                })}
+                .map((word, wordIdx) => (
+                  <motion.span
+                    style={{ opacity: 0, filter: "blur(10px)", y: 10 }}
+                    key={`w-${lineIdx}-${wordIdx}`}
+                  >
+                    {word}
+                  </motion.span>
+                ))}
             </div>
           ))}
       </div>
