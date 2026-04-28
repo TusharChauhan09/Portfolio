@@ -18,11 +18,11 @@ const HEATMAP_COLORS = {
     "#FFF176", // light yellow
   ],
   light: [
-    "#e0e0e0", // empty
-    "#b0b0b0",
-    "#666666",
-    "#222222",
-    "#000000", // black for highest
+    "#ebedf0", // empty (match GitHubHeatmap light empty)
+    "#7a7a7a", // low — clearly darker than empty
+    "#4a4a4a", // mid
+    "#222222", // high
+    "#000000", // max
   ],
 };
 
@@ -154,7 +154,7 @@ const LeetCodeCard = ({ username }: { username: string }) => {
   // Responsive block size and margin
   const BLOCK_SIZE = isMobile ? 7 : 9;
   const BLOCK_MARGIN = isMobile ? 2 : 3;
-  const BLOCK_RADIUS = 2;
+  const BLOCK_RADIUS = 1;
 
   // Always end on today
   const today = new Date();

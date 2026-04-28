@@ -472,6 +472,22 @@ body {
   height: 80% !important;
 }
 
+/* Dark mode: dim body/paragraph text, keep headings full bright.
+   Override applies only when element has no inline color utility. */
+.dark p,
+.dark li,
+.dark span:not([class*="text-"]):not([class*="demon"]) {
+  color: rgba(255, 255, 255, 0.72);
+}
+.dark h1,
+.dark h2,
+.dark h3,
+.dark h4,
+.dark h5,
+.dark h6 {
+  color: var(--foreground);
+}
+
 /* Mobile dock pill: ensure inner ::after ring follows full pill curve */
 .dock-pill,
 .dock-pill::after {

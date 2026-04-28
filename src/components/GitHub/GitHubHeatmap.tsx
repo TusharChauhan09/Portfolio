@@ -84,18 +84,18 @@ export default function GitHubHeatmap({ username }: { username: string }) {
   // Zero (level 0) color also drives loading skeleton — keep subtle vs page bg
   const customTheme = {
     dark: [
-      "#1a1a1a", // near-black for empty + skeleton on dark bg
-      "#7a1f1f", // dark red
-      "#b22222", // firebrick
-      "#ff0000", // red
-      "#ff4d4d", // light red
+      "#1a1a1a", // near-black empty + skeleton on dark bg
+      "#0e4429", // deep green
+      "#006d32", // dark green
+      "#26a641", // mid green
+      "#39d353", // bright green
     ],
     light: [
-      "#ebedf0", // subtle gray for empty + skeleton on light bg
-      "#b0b0b0", // darker light gray
-      "#666666", // darker gray
-      "#222222", // black
-      "#000000", // pure black
+      "#ebedf0", // empty
+      "#7a7a7a", // low — already clearly darker than empty
+      "#4a4a4a", // mid
+      "#222222", // high
+      "#000000", // max
     ],
   };
 
@@ -116,7 +116,7 @@ export default function GitHubHeatmap({ username }: { username: string }) {
   // Responsive block size and margin
   const blockSize = isMobile ? 7 : 9;
   const blockMargin = isMobile ? 2 : 3;
-  const blockRadius = isMobile ? 2 : 3;
+  const blockRadius = isMobile ? 1 : 1;
   const fontSize = isMobile ? 8 : 10;
 
   // Only show last 6 months on mobile
