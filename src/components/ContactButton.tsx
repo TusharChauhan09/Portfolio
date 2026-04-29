@@ -8,7 +8,21 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
-import { ContactFormFields } from "@/components/Home/ContactForm";
+import XIcon from "@/components/Home/BentoCards/Icons/XIcon";
+import LinkedinIcon from "@/components/Home/BentoCards/Icons/LinkedinIcon";
+
+const socials = [
+  {
+    label: "X",
+    href: "https://x.com/TusharChau09",
+    Component: XIcon,
+  },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/tushar9/",
+    Component: LinkedinIcon,
+  },
+];
 
 const ContactButton = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -25,14 +39,31 @@ const ContactButton = () => {
       </button>
 
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogContent className="BentoCard !fixed !border-border !p-6 sm:!max-w-md">
-          <DialogHeader>
-            <DialogTitle className="jap text-2xl">Get in Touch</DialogTitle>
-            <DialogDescription className="small-text text-[12px] text-muted-foreground">
-              Drop me a message and I&apos;ll get back to you.
+        <DialogContent className="BentoCard !fixed !border-border !p-6 sm:!max-w-xs overflow-hidden gap-4">
+          <DialogHeader className="!text-left">
+            <DialogTitle className="jap text-2xl leading-none">
+              Get in Touch
+            </DialogTitle>
+            <DialogDescription className="small-text text-[11px] text-muted-foreground mt-1">
+              Hit me up on socials.
             </DialogDescription>
           </DialogHeader>
-          <ContactFormFields compact />
+
+          <div className="flex items-center justify-center gap-4 py-2">
+            {socials.map(({ label, href, Component }) => (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={label}
+                title={label}
+                className="cursor-pointer transition-transform hover:scale-110"
+              >
+                <Component size={56} />
+              </a>
+            ))}
+          </div>
         </DialogContent>
       </Dialog>
     </>

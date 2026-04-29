@@ -5,10 +5,13 @@ import { useForm } from "react-hook-form";
 import { z } from "zod/v4";
 import { zodResolver } from "@hookform/resolvers/zod";
 
+const MAX_LEN = 500;
+
 const contactSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters"),
-  email: z.email("Please enter a valid email"),
-  message: z.string().min(10, "Message must be at least 10 characters"),
+  message: z
+    .string()
+    .min(10, "At least 10 characters")
+    .max(MAX_LEN, `Max ${MAX_LEN} characters`),
 });
 
 type ContactFormData = z.infer<typeof contactSchema>;
@@ -32,10 +35,15 @@ export function ContactFormFields({ compact = false }: { compact?: boolean }) {
     register,
     handleSubmit,
     reset,
+    watch,
     formState: { errors },
   } = useForm<ContactFormData>({
     resolver: zodResolver(contactSchema),
+    defaultValues: { message: "" },
   });
+
+  const messageValue = watch("message") ?? "";
+  const charCount = messageValue.length;
 
   const onSubmit = async (data: ContactFormData) => {
     setStatus("sending");
@@ -55,12 +63,11 @@ export function ContactFormFields({ compact = false }: { compact?: boolean }) {
     }
   };
 
-  const inputClass =
-    "w-full bg-transparent border border-border rounded-lg px-3 py-2 text-sm smalll placeholder:text-muted-foreground/50 outline-none focus:border-foreground transition-colors";
-
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="w-full flex flex-col gap-4">
-      {/* Name */}
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="w-full flex flex-col gap-3"
+    >
       <motion.div
         className="flex flex-col gap-1.5"
         variants={fieldVariants}
@@ -68,89 +75,25 @@ export function ContactFormFields({ compact = false }: { compact?: boolean }) {
         animate="visible"
         custom={0}
       >
-        <label
-          htmlFor={compact ? "modal-name" : "name"}
-          className="smalll text-[11px] text-muted-foreground"
-        >
-          Name
-        </label>
-        <input
-          id={compact ? "modal-name" : "name"}
-          type="text"
-          placeholder="Your name"
-          {...register("name")}
-          className={inputClass}
-        />
-        <AnimatePresence>
-          {errors.name && (
-            <motion.span
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              className="small-text text-[11px] text-destructive overflow-hidden"
-            >
-              {errors.name.message}
-            </motion.span>
-          )}
-        </AnimatePresence>
-      </motion.div>
-
-      {/* Email */}
-      <motion.div
-        className="flex flex-col gap-1.5"
-        variants={fieldVariants}
-        initial="hidden"
-        animate="visible"
-        custom={1}
-      >
-        <label
-          htmlFor={compact ? "modal-email" : "email"}
-          className="smalll text-[11px] text-muted-foreground"
-        >
-          Email
-        </label>
-        <input
-          id={compact ? "modal-email" : "email"}
-          type="email"
-          placeholder="you@example.com"
-          {...register("email")}
-          className={inputClass}
-        />
-        <AnimatePresence>
-          {errors.email && (
-            <motion.span
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              className="small-text text-[11px] text-destructive overflow-hidden"
-            >
-              {errors.email.message}
-            </motion.span>
-          )}
-        </AnimatePresence>
-      </motion.div>
-
-      {/* Message */}
-      <motion.div
-        className="flex flex-col gap-1.5"
-        variants={fieldVariants}
-        initial="hidden"
-        animate="visible"
-        custom={2}
-      >
-        <label
-          htmlFor={compact ? "modal-message" : "message"}
-          className="smalll text-[11px] text-muted-foreground"
-        >
-          Message
-        </label>
-        <textarea
-          id={compact ? "modal-message" : "message"}
-          rows={compact ? 3 : 4}
-          placeholder="What's on your mind?"
-          {...register("message")}
-          className={`${inputClass} resize-none`}
-        />
+        <div className="relative group">
+          <textarea
+            id={compact ? "modal-message" : "message"}
+            rows={compact ? 3 : 5}
+            maxLength={MAX_LEN}
+            placeholder="What's on your mind?"
+            {...register("message")}
+            className="w-full resize-none bg-background/40 border border-border rounded-lg px-3 py-2.5 pb-6 text-sm smalll placeholder:text-muted-foreground/40 outline-none focus:border-foreground focus:bg-background/60 transition-all"
+          />
+          <span
+            className={`smalll absolute right-3 bottom-2 text-[10px] tabular-nums pointer-events-none ${
+              charCount > MAX_LEN * 0.9
+                ? "text-destructive"
+                : "text-muted-foreground/60"
+            }`}
+          >
+            {charCount}/{MAX_LEN}
+          </span>
+        </div>
         <AnimatePresence>
           {errors.message && (
             <motion.span
@@ -165,42 +108,61 @@ export function ContactFormFields({ compact = false }: { compact?: boolean }) {
         </AnimatePresence>
       </motion.div>
 
-      {/* Submit */}
       <motion.div
         variants={fieldVariants}
         initial="hidden"
         animate="visible"
-        custom={3}
+        custom={1}
+        className="flex items-center justify-between gap-3"
       >
+        <AnimatePresence mode="wait">
+          {status === "sent" ? (
+            <motion.p
+              key="sent"
+              initial={{ opacity: 0, y: 4 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -4 }}
+              className="small-text text-[11px] text-muted-foreground"
+            >
+              Thanks! I&apos;ll get back to you soon.
+            </motion.p>
+          ) : status === "error" ? (
+            <motion.p
+              key="err"
+              initial={{ opacity: 0, y: 4 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -4 }}
+              className="small-text text-[11px] text-destructive"
+            >
+              Something broke — try again.
+            </motion.p>
+          ) : (
+            <motion.span
+              key="hint"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="smalll text-[10px] text-muted-foreground/60"
+            >
+              No email needed.
+            </motion.span>
+          )}
+        </AnimatePresence>
+
         <motion.button
           type="submit"
           disabled={status === "sending"}
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-          className="smalll text-xs px-5 py-2 rounded-lg border border-foreground bg-foreground text-background hover:bg-transparent hover:text-foreground transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          whileHover={{ scale: 1.03 }}
+          whileTap={{ scale: 0.97 }}
+          className="smalll text-xs px-5 py-2 rounded-lg border border-foreground bg-foreground text-background hover:bg-transparent hover:text-foreground transition-colors disabled:opacity-50 disabled:cursor-not-allowed shrink-0"
         >
           {status === "sending"
             ? "Sending..."
             : status === "sent"
               ? "Sent!"
-              : status === "error"
-                ? "Failed — try again"
-                : "Send Message"}
+              : "Send"}
         </motion.button>
       </motion.div>
-
-      <AnimatePresence>
-        {status === "sent" && (
-          <motion.p
-            initial={{ opacity: 0, y: 4 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -4 }}
-            className="small-text text-[11px] text-muted-foreground"
-          >
-            Thanks for reaching out! I&apos;ll get back to you soon.
-          </motion.p>
-        )}
-      </AnimatePresence>
     </form>
   );
 }
