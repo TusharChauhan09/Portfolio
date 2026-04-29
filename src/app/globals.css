@@ -55,6 +55,13 @@
 }
 
 @font-face {
+  font-family: "SFCartoonistHand";
+  src: url("/fonts/sf-cartoonist-hand.regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
   font-family: "Mallanna-Regular";
   src: url("/fonts/Mallanna-Regular.ttf") format("truetype");
   font-weight: normal;
@@ -259,7 +266,7 @@ body {
 }
 
 .smalll {
-  font-family: "SFCartoonistHandSCBold", sans-serif;
+  font-family: "SFCartoonistHand", sans-serif;
 }
 
 .small-text {

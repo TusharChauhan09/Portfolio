@@ -77,7 +77,7 @@ const Navbar = () => {
                           ? `jap text-4xl ${
                               theme === "dark" ? "demon-red" : "demon-red"
                             }`
-                          : "smalll text-md"
+                          : "smalll text-xl tracking-wide"
                       }`}
                     >
                       {name}

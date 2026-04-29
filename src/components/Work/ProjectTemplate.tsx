@@ -52,7 +52,7 @@ const ProjectTemplate: React.FC<ProjectTemplateProps> = ({
 
         {/* Title + links */}
         <div className="flex w-full justify-between items-start gap-2">
-          <h2 className="smalll text-base font-semibold text-black dark:text-white leading-tight">
+          <h2 className="smalll text-lg font-semibold text-black dark:text-white leading-tight">
             {title}
           </h2>
           <div className="flex space-x-1 shrink-0">
@@ -86,7 +86,7 @@ const ProjectTemplate: React.FC<ProjectTemplateProps> = ({
         </div>
 
         {/* Description */}
-        <p className="text-xs leading-relaxed text-black/60 dark:text-white/60 line-clamp-2">
+        <p className="smalll text-sm leading-relaxed text-black/60 dark:text-white/60 line-clamp-2">
           {description}
         </p>
 

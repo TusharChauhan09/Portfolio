@@ -135,7 +135,7 @@ export default function Introduction({ name }: { name: string }) {
       {/* testimonial */}
       <div
         ref={scope}
-        className="flex flex-col gap-y-2 smalll text-[14px] w-full max-w-full leading-relaxed"
+        className="flex flex-col gap-y-2 smalll text-[19px] w-full max-w-full leading-relaxed"
       >
         {introduction
           .split(/\r?\n/)

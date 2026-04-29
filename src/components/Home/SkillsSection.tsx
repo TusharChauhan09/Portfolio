@@ -98,7 +98,7 @@ const Devops = [
 ];
 
 const Tech = ({ name }: { name: string }) => (
-  <h2 className="smalll text-sm">
+  <h2 className="smalll text-base">
     {"<"} {name} {" />"}
   </h2>
 );

@@ -204,7 +204,7 @@ const API = [
 
 const Tech = ({ name }: { name: string }) => {
   return (
-    <h2 className="smalll text-md">
+    <h2 className="smalll text-lg">
       {"<"} {name} {" />"}
     </h2>
   );
