@@ -101,20 +101,19 @@ const MobileDock = () => {
                 transition={{ type: "spring", stiffness: 400, damping: 18 }}
                 className={`relative flex items-center justify-center w-11 h-11 rounded-full transition-colors duration-300 ease-out ${
                   active
-                    ? "text-white dark:text-black"
+                    ? "text-white dark:text-white"
                     : "text-black/65 dark:text-white/65"
                 }`}
               >
                 {active && (
                   <motion.span
                     layoutId="dock-active"
-                    className="absolute inset-0 rounded-full bg-black dark:bg-white"
-                    style={{ filter: "url(#dock-goo)" }}
+                    className="absolute inset-0 rounded-full bg-black dark:bg-red-800 dark:shadow-[0_0_14px_rgba(153,27,27,0.4)]"
                     transition={{
                       type: "spring",
-                      stiffness: 200,
-                      damping: 22,
-                      mass: 1,
+                      stiffness: 380,
+                      damping: 32,
+                      mass: 0.8,
                     }}
                   />
                 )}
